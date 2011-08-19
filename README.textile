@@ -1,0 +1,7 @@
+h1. Combustion
+
+More information/documentation coming soon.
+
+h2. Credits
+
+Combustion is developed and maintained by Pat Allan, and is released under the open MIT Licence.
