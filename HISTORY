@@ -1,4 +1,4 @@
-Edge
+0.1.1 - August 24th 2011
 * Support assets properly by loading ActionView and Sprockets railties.
 
 0.1.0 - August 19th 2011
