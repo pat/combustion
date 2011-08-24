@@ -2,6 +2,8 @@ require 'rails'
 require 'active_support/dependencies'
 require 'active_record/railtie'
 require 'action_controller/railtie'
+require 'action_view/railtie'
+require 'sprockets/railtie'
 
 module Combustion
   def self.initialize!
