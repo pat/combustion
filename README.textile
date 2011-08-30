@@ -119,7 +119,6 @@ Contributions are very much welcome - but keep in mind the following:
 
 * Keep patches in a separate branch
 * Don't mess with the version or history file. I'll take care of that when the patch is merged in.
-* Write tests - look at the existing tests (particularly in @spec/acceptance@)
 
 There are no tests - partly because Combustion was extracted out from the tests of HyperTiny's Dobro, and partly because there's not much code. Still, if you can find a clean way of testing this, that'd be fantastic.
 
