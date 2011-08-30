@@ -1,3 +1,7 @@
+Edge
+* Allow developers to choose which Rails modules they wish to be loaded.
+* Load Rails routes and Capybara helpers into RSpec examples when appropriate.
+
 0.1.1 - August 24th 2011
 * Support assets properly by loading ActionView and Sprockets railties.
 
