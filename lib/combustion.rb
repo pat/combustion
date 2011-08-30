@@ -12,6 +12,13 @@ module Combustion
     silence_stream(STDOUT) do
       load "#{Rails.root}/db/schema.rb"
     end
+
+    RSpec.configure do |config|
+      config.include(Capybara) if defined?(Capybara)
+
+      config.include(Combustion::Application.routes.url_helpers)
+      config.include(Combustion::Application.routes.mounted_helpers)
+    end if defined?(RSpec)
   end
 end
 
