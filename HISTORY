@@ -1,4 +1,5 @@
 Edge
+* Documentation.
 * Allow developers to choose which Rails modules they wish to be loaded.
 * Load Rails routes and Capybara helpers into RSpec examples when appropriate.
 
