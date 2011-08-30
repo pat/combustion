@@ -12,15 +12,23 @@ class Combustion::Application < Rails::Application
   # ActiveSupport Settings
   config.active_support.deprecation = :stderr
 
-  # Action Controller and Action Dispatch
-  config.action_dispatch.show_exceptions            = false
-  config.action_controller.perform_caching          = false
-  config.action_controller.allow_forgery_protection = false
+  # Some settings we're not sure if we want, so let's not load them by default.
+  # Instead, wait for this method to be invoked (to get around load-order
+  # complications).
+  def self.configure_for_combustion
+    if defined?(ActionController) && defined?(ActionController::Engine)
+      config.action_dispatch.show_exceptions            = false
+      config.action_controller.perform_caching          = false
+      config.action_controller.allow_forgery_protection = false
+    end
 
-  # Action Mailer Settings
-  # config.action_mailer.delivery_method      = :test
-  # config.action_mailer.default_url_options  = {:host => 'www.example.com'}
+    if defined?(ActionMailer) && defined?(ActionMailer::Engine)
+      config.action_mailer.delivery_method     = :test
+      config.action_mailer.default_url_options = {:host => 'www.example.com'}
+    end
 
-  # Asset Settings
-  config.assets.enabled = true
+    if defined?(Sprockets)
+      config.assets.enabled = true
+    end
+  end
 end
