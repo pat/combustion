@@ -1,3 +1,6 @@
+Edge:
+* Allow for JRuby in the database.yml template (Philip Arndt).
+
 0.3.0 - September 2nd 2011
 * Simple generator to create a pretty minimal internal Rails app.
 
