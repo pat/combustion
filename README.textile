@@ -29,6 +29,10 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 end</code></pre>
 
+You'll also want to run the generator that creates a minimal set of files expected by Rails:
+
+<pre><code>combust</code></pre>
+
 What Combustion is doing is setting up a Rails application at @spec/internal@ - but you only need to add the files within that directory that you're going to use. Read on for some detail about what that involves.
 
 h3. Configuring which Rails modules should be loaded.
@@ -42,7 +46,7 @@ ActiveSupport is always loaded, as it's an integral part of Rails.
 
 h3. Using Models and ActiveRecord
 
-If you're using ActiveRecord, then there's two critical files within your internal Rails app at @spec/internal@ that you'll need to create:
+If you're using ActiveRecord, then there's two critical files within your internal Rails app at @spec/internal@ that you'll need to modify:
 
 * config/database.yml
 * db/schema.rb
@@ -63,7 +67,7 @@ h3. Using ActionController and ActionView
 
 You'll only need to add controllers and views to your internal Rails app for whatever you're testing that your engine doesn't provide - this may be nothing at all, so perhaps you don't even need @spec/internal/app/views@ or @spec/internal/app/controllers@ directories.
 
-However, if you're doing any testing of your engine's controllers or views, then you're going to need routes set up for them - so create a standard routes file at @spec/internal/config/routes.rb@:
+However, if you're doing any testing of your engine's controllers or views, then you're going to need routes set up for them - so modify @spec/internal/config/routes.rb@ accordingly:
 
 <pre><code>Rails.application.routes.draw do
   resources :pages
@@ -77,15 +81,7 @@ Your tests will execute within the test environment for the internal Rails app -
 
 h3. Rack it up
 
-Once you've got this set up, you can fire up your test environment quite easily with Rack - here's an example @config.ru@ file that could live in the root of your engine folder:
-
-<pre><code>require 'rubygems'
-require 'bundler'
-
-Bundler.require :default, :development
-
-Combustion.initialize!
-run Combustion::Application</code></pre>
+Once you've got this set up, you can fire up your test environment quite easily with Rack - a @config.ru@ file is provided by the generator. Just run @rackup@ and visit "http://localhost:9292":http://localhost:9292.
 
 h3. Get your test on!
 
@@ -108,8 +104,6 @@ Developed for Rails 3.1 and Ruby 1.9. It should work on any other Ruby, and poss
 h2. Limitations and Known Issues
 
 Combustion is currently written with the expectation it'll be used with RSpec. I'd love to make this more flexible - if you want to give it a shot before I get around to it, patches are very much welcome.
-
-I'm also keen to have a generator that adds the standard set of files and folders (@config/database.yml@, @config/routes.rb@, @db/schema.rb@, @log@) into @spec/internal@, just to make it even easier to get going. Again, patches are welcome for this, but I'll likely get to it pretty soon.
 
 I've not tried using this with Cucumber, but it should work in theory without too much hassle. Let me know if I'm wrong!
 
