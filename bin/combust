@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+# -*- mode: ruby -*-
+
+require 'combustion'
+require 'combustion/generator'
+
+Combustion::Generator.start
