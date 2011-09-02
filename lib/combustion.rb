@@ -17,7 +17,7 @@ module Combustion
     end
 
     RSpec.configure do |config|
-      config.include(Capybara) if defined?(Capybara)
+      config.include(Capybara::DSL) if defined?(Capybara)
 
       config.include(Combustion::Application.routes.url_helpers)
       config.include(Combustion::Application.routes.mounted_helpers)
