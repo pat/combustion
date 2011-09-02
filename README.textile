@@ -29,7 +29,7 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 end</code></pre>
 
-You'll also want to run the generator that creates a minimal set of files expected by Rails:
+You'll also want to run the generator that creates a minimal set of files expected by Rails - run this in the directory of your engine:
 
 <pre><code>combust</code></pre>
 
