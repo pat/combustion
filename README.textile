@@ -33,7 +33,9 @@ end</code></pre>
 
 You'll also want to run the generator that creates a minimal set of files expected by Rails - run this in the directory of your engine:
 
-<pre><code>combust</code></pre>
+<pre><code>combust
+# or, if bundling with the git repo:
+bundle exec combust</code></pre>
 
 What Combustion is doing is setting up a Rails application at @spec/internal@ - but you only need to add the files within that directory that you're going to use. Read on for some detail about what that involves.
 
