@@ -1,4 +1,4 @@
-Edge:
+0.3.1 - September 12th 2011
 * Allow for different versions of Capybara (Leo Liang).
 * Including Capybara::DSL instead of Capybara.
 * Require 3.1.0 or better.
