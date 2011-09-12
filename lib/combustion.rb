@@ -17,8 +17,24 @@ module Combustion
     end
 
     RSpec.configure do |config|
-      config.include(Capybara::DSL) if defined?(Capybara)
+      if defined?(Capybara::RSpecMatchers)
+        config.include Capybara::RSpecMatchers, :type => :view
+        config.include Capybara::RSpecMatchers, :type => :helper
+        config.include Capybara::RSpecMatchers, :type => :mailer
+        config.include Capybara::RSpecMatchers, :type => :controller
+      end
 
+      if defined?(Capybara::DSL)
+        config.include Capybara::DSL, :type => :controller
+      end
+
+      unless defined?(Capybara::RSpecMatchers) || defined?(Capybara::DSL)
+        if defined?(Capybara)
+          config.include Capybara, :type => :request
+          config.include Capybara, :type => :controller
+        end
+      end
+      
       config.include(Combustion::Application.routes.url_helpers)
       config.include(Combustion::Application.routes.mounted_helpers)
     end if defined?(RSpec) && RSpec.respond_to?(:configure)
