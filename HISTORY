@@ -1,4 +1,5 @@
 Edge:
+* Allow for different versions of Capybara (Leo Liang).
 * Including Capybara::DSL instead of Capybara.
 * Require 3.1.0 or better.
 * Allow for JRuby in the database.yml template (Philip Arndt).
