@@ -14,7 +14,7 @@ module Combustion
 
     silence_stream(STDOUT) do
       load "#{Rails.root}/db/schema.rb"
-    end
+    end if modules.include?('active_record') || modules.include?(:active_record)
 
     RSpec.configure do |config|
       include_capybara_into config
