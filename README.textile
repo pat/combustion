@@ -39,6 +39,13 @@ bundle exec combust</code></pre>
 
 What Combustion is doing is setting up a Rails application at @spec/internal@ - but you only need to add the files within that directory that you're going to use. Read on for some detail about what that involves.
 
+h3. Configuring a different test app directory
+
+If you want your app to be located somewhere other than @spec/internal@, then make sure you configure it before you call @Combustion.initialize!@:
+
+<pre><code>Combustion.path = 'spec/dummy'
+Combustion.initialize!</code></pre>
+
 h3. Configuring which Rails modules should be loaded.
 
 By default, Combustion assumes you want the full Rails stack. You can customise this though - just pass in what you'd like loaded to the @Combustion.initialize!@ call:
