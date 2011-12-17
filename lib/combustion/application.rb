@@ -1,8 +1,6 @@
 Rails.env = 'test'
 
 class Combustion::Application < Rails::Application
-  config.root   = File.expand_path File.join(Dir.pwd, 'spec', 'internal')
-
   # Core Settings
   config.cache_classes               = true
   config.whiny_nils                  = true
@@ -16,6 +14,8 @@ class Combustion::Application < Rails::Application
   # Instead, wait for this method to be invoked (to get around load-order
   # complications).
   def self.configure_for_combustion
+    config.root = File.expand_path File.join(Dir.pwd, Combustion.path)
+
     if defined?(ActionController) && defined?(ActionController::Engine)
       config.action_dispatch.show_exceptions            = false
       config.action_controller.perform_caching          = false

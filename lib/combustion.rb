@@ -24,6 +24,14 @@ module Combustion
     end if defined?(RSpec) && RSpec.respond_to?(:configure)
   end
 
+  def self.path
+    @path ||= 'spec/internal'
+  end
+
+  def self.path=(path)
+    @path = path
+  end
+
   def self.include_capybara_into(config)
     return unless defined?(Capybara)
 
