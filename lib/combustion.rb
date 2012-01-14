@@ -14,6 +14,8 @@ module Combustion
 
     silence_stream(STDOUT) do
       load "#{Rails.root}/db/schema.rb"
+      ActiveRecord::Migrator.migrate ActiveRecord::Migrator.migrations_paths,
+        nil
     end if modules.include?('active_record') || modules.include?(:active_record)
 
     RSpec.configure do |config|
