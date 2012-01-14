@@ -12,11 +12,9 @@ module Combustion
     Combustion::Application.configure_for_combustion
     Combustion::Application.initialize!
 
-    silence_stream(STDOUT) do
-      load "#{Rails.root}/db/schema.rb"
-      ActiveRecord::Migrator.migrate ActiveRecord::Migrator.migrations_paths,
-        nil
-    end if modules.include?('active_record') || modules.include?(:active_record)
+    if modules.include?('active_record') || modules.include?(:active_record)
+      Combustion::Database.setup
+    end
 
     RSpec.configure do |config|
       include_capybara_into config
@@ -47,4 +45,5 @@ module Combustion
 end
 
 require 'combustion/application'
+require 'combustion/database'
 require 'combustion/version'
