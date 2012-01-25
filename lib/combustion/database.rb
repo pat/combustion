@@ -14,6 +14,7 @@ class Combustion::Database
       ActiveRecord::Base.establish_connection(:test)
       ActiveRecord::Base.connection.recreate_database(abcs['test']['database'],
         mysql_creation_options(abcs['test']))
+      ActiveRecord::Base.establish_connection(:test)
     when /postgresql/
       ActiveRecord::Base.clear_active_connections!
       drop_database(abcs['test'])
@@ -45,6 +46,25 @@ class Combustion::Database
   end
 
   def self.migrate
-    ActiveRecord::Migrator.migrate ActiveRecord::Migrator.migrations_paths, nil
+    migrator = ActiveRecord::Migrator
+    paths    = 'db/migrate/'
+
+    if migrator.respond_to?(:migrations_paths)
+      paths    = migrator.migrations_paths
+    end
+
+    migrator.migrate paths, nil
+  end
+
+  private
+
+  def self.mysql_creation_options(config)
+    @charset   = ENV['CHARSET']   || 'utf8'
+    @collation = ENV['COLLATION'] || 'utf8_unicode_ci'
+
+    {
+      :charset   => (config['charset']   || @charset),
+      :collation => (config['collation'] || @collation)
+    }
   end
 end

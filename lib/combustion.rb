@@ -20,7 +20,9 @@ module Combustion
       include_capybara_into config
 
       config.include(Combustion::Application.routes.url_helpers)
-      config.include(Combustion::Application.routes.mounted_helpers)
+      if Combustion::Application.routes.respond_to?(:mounted_helpers)
+        config.include(Combustion::Application.routes.mounted_helpers)
+      end
     end if defined?(RSpec) && RSpec.respond_to?(:configure)
   end
 
