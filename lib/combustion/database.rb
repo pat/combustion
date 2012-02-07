@@ -9,35 +9,37 @@ class Combustion::Database
 
   def self.reset_database
     abcs = ActiveRecord::Base.configurations
-    case abcs['test']['adapter']
+    env = ENV['RAILS_ENV'] || 'test'
+    env_sym = env.to_sym
+    case abcs[env]['adapter']
     when /mysql/
-      ActiveRecord::Base.establish_connection(:test)
-      ActiveRecord::Base.connection.recreate_database(abcs['test']['database'],
-        mysql_creation_options(abcs['test']))
-      ActiveRecord::Base.establish_connection(:test)
+      ActiveRecord::Base.establish_connection(env_sym)
+      ActiveRecord::Base.connection.recreate_database(abcs[env]['database'],
+        mysql_creation_options(abcs[env]))
+      ActiveRecord::Base.establish_connection(env_sym)
     when /postgresql/
       ActiveRecord::Base.clear_active_connections!
-      drop_database(abcs['test'])
-      create_database(abcs['test'])
+      drop_database(abcs[env])
+      create_database(abcs[env])
     when /sqlite/
-      dbfile = abcs['test']['database'] || abcs['test']['dbfile']
+      dbfile = abcs[env]['database'] || abcs[env]['dbfile']
       File.delete(dbfile) if File.exist?(dbfile)
     when 'sqlserver'
-      test = abcs.deep_dup['test']
+      test = abcs.deep_dup[env]
       test_database = test['database']
       test['database'] = 'master'
       ActiveRecord::Base.establish_connection(test)
       ActiveRecord::Base.connection.recreate_database!(test_database)
     when "oci", "oracle"
-      ActiveRecord::Base.establish_connection(:test)
+      ActiveRecord::Base.establish_connection(env_sym)
       ActiveRecord::Base.connection.structure_drop.split(";\n\n").each do |ddl|
         ActiveRecord::Base.connection.execute(ddl)
       end
     when 'firebird'
-      ActiveRecord::Base.establish_connection(:test)
+      ActiveRecord::Base.establish_connection(env_sym)
       ActiveRecord::Base.connection.recreate_database!
     else
-      raise "Cannot reset databases for '#{abcs['test']['adapter']}'"
+      raise "Cannot reset databases for '#{abcs[env]['adapter']}'"
     end
   end
 
