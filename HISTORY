@@ -1,4 +1,5 @@
-Edge:
+0.3.2 - March 3rd 2011
+* Tentative Rails 3.0 and migrations support.
 * Allow for different internal app directory.
 
 0.3.1 - September 12th 2011
