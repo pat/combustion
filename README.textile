@@ -57,7 +57,7 @@ ActiveSupport is always loaded, as it's an integral part of Rails.
 
 h3. Using Models and ActiveRecord
 
-If you're using ActiveRecord, then there's two critical files within your internal Rails app at @spec/internal@ that you'll need to modify:
+If you're using ActiveRecord, then there are two critical files within your internal Rails app at @spec/internal@ that you'll need to modify:
 
 * config/database.yml
 * db/schema.rb
@@ -96,7 +96,7 @@ Once you've got this set up, you can fire up your test environment quite easily 
 
 h3. Get your test on!
 
-Now you're good to go - you can write specs within your engine's spec directory just like you were testing a full Rails application - models in @spec/models@, controllers in @spec/controllers@. If you bring Capybara into the mix, then the standard helpers helpers from that will be loaded as well.
+Now you're good to go - you can write specs within your engine's spec directory just like you were testing a full Rails application - models in @spec/models@, controllers in @spec/controllers@. If you bring Capybara into the mix, then the standard helpers from that will be loaded as well.
 
 <pre><code>require 'spec_helper'
 
