@@ -2,8 +2,13 @@ require 'rails'
 require 'active_support/dependencies'
 
 module Combustion
-  Modules = %w( active_record action_controller action_view action_mailer
-    sprockets )
+
+  if Rails.version > '3.1'
+    Modules = %w( active_record action_controller action_view action_mailer
+      sprockets )
+  else
+    Modules = %w( active_record action_controller action_view action_mailer )
+  end
 
   def self.initialize!(*modules)
     modules = Modules if modules.empty? || modules == [:all]
