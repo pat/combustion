@@ -20,8 +20,8 @@ class Combustion::Database
       drop_database(abcs['test'])
       create_database(abcs['test'])
     when /sqlite/
-      dbfile = abcs['test']['database'] || abcs['test']['dbfile']
-      File.delete(dbfile) if File.exist?(dbfile)
+      drop_database(abcs['test'])
+      create_database(abcs['test'])
     when 'sqlserver'
       test = abcs.deep_dup['test']
       test_database = test['database']
@@ -47,12 +47,13 @@ class Combustion::Database
 
   def self.migrate
     migrator = ActiveRecord::Migrator
-    paths    = 'db/migrate/'
+    paths    = Array('db/migrate/')
 
     if migrator.respond_to?(:migrations_paths)
-      paths    = migrator.migrations_paths
+      paths = migrator.migrations_paths
     end
-
+    # Append the migrations inside the internal app's db/migrate directory
+    paths << File.join(Rails.root, 'db/migrate')
     migrator.migrate paths, nil
   end
 
