@@ -129,4 +129,4 @@ There are no tests - partly because Combustion was extracted out from the tests 
 
 h2. Credits
 
-Copyright (c) 2011, Combustion is developed and maintained by Pat Allan, and is released under the open MIT Licence. Many thanks to HyperTiny for encouraging its development, and "all who have contributed patches":https://github.com/freelancing-god/combustion/contributors.
+Copyright (c) 2011, Combustion is developed and maintained by Pat Allan, and is released under the open MIT Licence. Many thanks to HyperTiny for encouraging its development, and "all who have contributed patches":https://github.com/pat/combustion/contributors.
