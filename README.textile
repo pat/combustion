@@ -13,7 +13,7 @@ gem.add_development_dependency 'combustion', '~> 0.3.1'
 # Gemfile
 gem 'combustion', '~> 0.3.1', :group => :development</code></pre>
 
-In your @spec_helper.rb@, get Combustion to set itself up - which has to happen before you introduce @rspec/rails@ and - if being used - @capybara/rspec@. Here's an example within context:
+In your @spec_helper.rb@, get Combustion to set itself up - which has to happen before you introduce @rspec/rails@ and - if being used - @capybara/rails@. Here's an example within context:
 
 <pre><code>require 'rubygems'
 require 'bundler'
