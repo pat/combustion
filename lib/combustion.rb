@@ -2,6 +2,8 @@ require 'rails'
 require 'active_support/dependencies'
 
 module Combustion
+  
+  mattr_accessor :path, :schema_format
 
   if Rails.version > '3.1'
     Modules = %w( active_record action_controller action_view action_mailer
@@ -29,14 +31,6 @@ module Combustion
         config.include(Combustion::Application.routes.mounted_helpers)
       end
     end if defined?(RSpec) && RSpec.respond_to?(:configure)
-  end
-
-  def self.path
-    @path ||= 'spec/internal'
-  end
-
-  def self.path=(path)
-    @path = path
   end
 
   def self.include_capybara_into(config)
