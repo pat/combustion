@@ -72,6 +72,13 @@ Both follow the same structure as in any normal Rails application - and the sche
   end
 end</code></pre>
 
+h3. Configuring Combustion to initialise the test db from a .sql file instead of schema.rb
+
+Name the file structure.sql and configure Combustion to use it before initialising:
+
+<pre><code>Combustion.schema_format = :sql
+Combustion.initialize!</code></pre>
+
 Any models that aren't provided by your engine should be located at @spec/internal/app/models@.
 
 h3. Using ActionController and ActionView

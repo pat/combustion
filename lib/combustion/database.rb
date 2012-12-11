@@ -42,7 +42,11 @@ class Combustion::Database
   end
 
   def self.load_schema
-    load "#{Rails.root}/db/schema.rb"
+    if Combustion.schema_format.to_s == "sql"
+      ActiveRecord::Base.connection.execute(File.read("#{Rails.root}/db/structure.sql"))
+    else
+      load "#{Rails.root}/db/schema.rb"
+    end
   end
 
   def self.migrate
