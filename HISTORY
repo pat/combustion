@@ -1,3 +1,10 @@
+Edge:
+* SQL Schema support (Geoff Hodgson).
+* Documentation fixes (Philip Arndt, Inge Jørgensen, Erkan Yilmaz).
+* Include migrations from the internal app when migrating the database (Warren Seen).
+* Correctly drop the test database when using SQLite (Warren Seen).
+* Don't attempt to load sprockets for Rails 3.0.x (Alex Rozumey).
+
 0.3.2 - March 3rd 2011
 * Tentative Rails 3.0 and migrations support.
 * Allow for different internal app directory.
