@@ -1,4 +1,5 @@
 Edge:
+* Load ActionController and ActionMailer via their Railties, not non-existent Engines (Chris Beer).
 * SQL Schema support (Geoff Hodgson).
 * Documentation fixes (Philip Arndt, Inge Jørgensen, Erkan Yilmaz).
 * Include migrations from the internal app when migrating the database (Warren Seen).
