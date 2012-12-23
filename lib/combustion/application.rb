@@ -16,13 +16,13 @@ class Combustion::Application < Rails::Application
   def self.configure_for_combustion
     config.root = File.expand_path File.join(Dir.pwd, Combustion.path)
 
-    if defined?(ActionController) && defined?(ActionController::Engine)
+    if defined?(ActionController) && defined?(ActionController::Railtie)
       config.action_dispatch.show_exceptions            = false
       config.action_controller.perform_caching          = false
       config.action_controller.allow_forgery_protection = false
     end
 
-    if defined?(ActionMailer) && defined?(ActionMailer::Engine)
+    if defined?(ActionMailer) && defined?(ActionMailer::Railtie)
       config.action_mailer.delivery_method     = :test
       config.action_mailer.default_url_options = {:host => 'www.example.com'}
     end
