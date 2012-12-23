@@ -1,4 +1,5 @@
-Edge:
+0.3.3 - December 23rd 2012
+* Removing version file - version number can just live in the gemspec.
 * Load ActionController and ActionMailer via their Railties, not non-existent Engines (Chris Beer).
 * SQL Schema support (Geoff Hodgson).
 * Documentation fixes (Philip Arndt, Inge Jørgensen, Erkan Yilmaz).
