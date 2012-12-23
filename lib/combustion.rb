@@ -49,4 +49,3 @@ end
 
 require 'combustion/application'
 require 'combustion/database'
-require 'combustion/version'

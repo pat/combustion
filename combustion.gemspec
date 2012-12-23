@@ -1,10 +1,7 @@
 # -*- encoding: utf-8 -*-
-$:.push File.expand_path('../lib', __FILE__)
-require 'combustion/version'
-
 Gem::Specification.new do |s|
   s.name        = 'combustion'
-  s.version     = Combustion::VERSION
+  s.version     = '0.3.2'
   s.authors     = ['Pat Allan']
   s.email       = ['pat@freelancing-gods.com']
   s.homepage    = ''
