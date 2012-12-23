@@ -42,10 +42,15 @@ class Combustion::Database
   end
 
   def self.load_schema
-    if Combustion.schema_format.to_s == "sql"
-      ActiveRecord::Base.connection.execute(File.read("#{Rails.root}/db/structure.sql"))
+    case Combustion.schema_format
+    when :ruby
+      load Rails.root.join('db', 'schema.rb')
+    when :sql
+      ActiveRecord::Base.connection.execute(
+        File.read(Rails.root.join('db', 'structure.sql'))
+      )
     else
-      load "#{Rails.root}/db/schema.rb"
+      raise "Unknown schema format: #{Combustion.schema_format}"
     end
   end
 

@@ -1,9 +1,11 @@
 require 'rails'
 require 'active_support/dependencies'
 
-module Combustion
-  
+module Combustion  
   mattr_accessor :path, :schema_format
+  
+  self.path          = '/spec/internal'
+  self.schema_format = :ruby
 
   if Rails.version > '3.1'
     Modules = %w( active_record action_controller action_view action_mailer
