@@ -39,6 +39,8 @@ bundle exec combust</code></pre>
 
 What Combustion is doing is setting up a Rails application at @spec/internal@ - but you only need to add the files within that directory that you're going to use. Read on for some detail about what that involves.
 
+If you want to use Cucumber, I recommend starting with "these notes":https://github.com/pat/combustion/issues/16 from Niklas Cathor.
+
 h3. Configuring a different test app directory
 
 If you want your app to be located somewhere other than @spec/internal@, then make sure you configure it before you call @Combustion.initialize!@:
