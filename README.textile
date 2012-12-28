@@ -11,14 +11,14 @@ Get the gem into either your gemspec or your Gemfile, depending on how you manag
 <pre><code># gemspec
 gem.add_development_dependency 'combustion', '~> 0.3.1'
 # Gemfile
-gem 'combustion', '~> 0.3.1', :group => :development</code></pre>
+gem 'combustion', '~> 0.3.1', :group => :test</code></pre>
 
 In your @spec_helper.rb@, get Combustion to set itself up - which has to happen before you introduce @rspec/rails@ and - if being used - @capybara/rails@. Here's an example within context:
 
 <pre><code>require 'rubygems'
 require 'bundler'
 
-Bundler.require :default, :development
+Bundler.require :default, :test
 
 require 'capybara/rspec'
 
@@ -50,10 +50,24 @@ Combustion.initialize!</code></pre>
 
 h3. Configuring which Rails modules should be loaded.
 
-By default, Combustion assumes you want the full Rails stack. You can customise this though - just pass in what you'd like loaded to the @Combustion.initialize!@ call:
+By default, Combustion doesn't come with any of the Rails stack. You can customise this though - just pass in what you'd like loaded to the @Combustion.initialize!@ call:
 
-<pre><code>Combustion.initialize! :active_record, :action_controller,
-  :action_view, :sprockets</code></pre>
+<pre><code>
+Combustion.initialize! :active_record, :action_controller,
+                       :action_view, :sprockets
+</code></pre>
+
+And then in your application's Gemfile:
+
+<pre><code>
+group :test do
+  gem 'activerecord'
+  gem 'actionpack' # action_controller, action_view
+  gem 'sprockets'
+end
+</code></pre>
+
+Make sure to specify the appropriate version that you want to use.
 
 ActiveSupport is always loaded, as it's an integral part of Rails.
 
