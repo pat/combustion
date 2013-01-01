@@ -11,6 +11,10 @@ module Combustion
     # ActiveSupport Settings
     config.active_support.deprecation = :stderr
 
+    # Turn on ActiveRecord attribute whitelisting
+    # This way the dummy app matches new rails app's re: this setting
+    config.active_record.whitelist_attributes = true
+
     # Some settings we're not sure if we want, so let's not load them by default.
     # Instead, wait for this method to be invoked (to get around load-order
     # complications).
