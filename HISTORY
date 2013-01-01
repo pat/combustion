@@ -1,3 +1,8 @@
+Edge:
+* Mass assignment checks are now turned on, so errors are raised. This matches Rails' defaults for test environments (Josh Adams).
+* Combustion no longer loads all of the Rails stack by default, just ActiveSupport. A combustion-rails gem will be created that uses all of Rails by default (Phil Arndt).
+* Combustion classes now all define the outer module, so each can be required by themselves, should you desire (Phil Arndt).
+
 0.3.3 - December 23rd 2012
 * Removing version file - version number can just live in the gemspec.
 * Load ActionController and ActionMailer via their Railties, not non-existent Engines (Chris Beer).
