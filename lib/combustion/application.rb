@@ -1,4 +1,4 @@
-Rails.env = 'test'
+Rails.env = ENV['RAILS_ENV'] || 'test'
 
 module Combustion
   class Application < Rails::Application
@@ -12,8 +12,8 @@ module Combustion
     config.active_support.deprecation = :stderr
 
     # Turn on ActiveRecord attribute whitelisting
-    # This way the dummy app matches new rails app's re: this setting
-    config.active_record.whitelist_attributes = true
+    # This way the dummy app matches new rails apps re: this setting
+    config.active_record.whitelist_atributes = true if config.respond_to? :active_record
 
     # Some settings we're not sure if we want, so let's not load them by default.
     # Instead, wait for this method to be invoked (to get around load-order
@@ -21,18 +21,18 @@ module Combustion
     def self.configure_for_combustion
       config.root = File.expand_path File.join(Dir.pwd, Combustion.path)
 
-      if defined?(ActionController) && defined?(ActionController::Railtie)
+      if defined? ActionController::Railtie
         config.action_dispatch.show_exceptions            = false
         config.action_controller.perform_caching          = false
         config.action_controller.allow_forgery_protection = false
       end
 
-      if defined?(ActionMailer) && defined?(ActionMailer::Railtie)
+      if defined? ActionMailer::Railtie
         config.action_mailer.delivery_method     = :test
         config.action_mailer.default_url_options = {:host => 'www.example.com'}
       end
 
-      if defined?(Sprockets)
+      if defined? Sprockets
         config.assets.enabled = true
       end
     end

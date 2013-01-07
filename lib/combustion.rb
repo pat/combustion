@@ -1,9 +1,9 @@
 require 'rails'
 require 'active_support/dependencies'
 
-module Combustion  
+module Combustion
   mattr_accessor :path, :schema_format
-  
+
   self.path          = '/spec/internal'
   self.schema_format = :ruby
 
@@ -15,22 +15,22 @@ module Combustion
   end
 
   def self.initialize!(*modules)
-    modules = Modules if modules.empty? || modules == [:all]
+    modules = Modules if modules == [:all]
     modules.each { |mod| require "#{mod}/railtie" }
 
     Combustion::Application.configure_for_combustion
     Combustion::Application.initialize!
 
-    if modules.include?('active_record') || modules.include?(:active_record)
+    if modules.map(&:to_s).include? 'active_record'
       Combustion::Database.setup
     end
 
     RSpec.configure do |config|
       include_capybara_into config
 
-      config.include(Combustion::Application.routes.url_helpers)
+      config.include Combustion::Application.routes.url_helpers
       if Combustion::Application.routes.respond_to?(:mounted_helpers)
-        config.include(Combustion::Application.routes.mounted_helpers)
+        config.include Combustion::Application.routes.mounted_helpers
       end
     end if defined?(RSpec) && RSpec.respond_to?(:configure)
   end

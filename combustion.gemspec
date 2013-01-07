@@ -16,5 +16,6 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
 
   s.add_runtime_dependency 'activesupport', '>= 3.0.0'
+  s.add_runtime_dependency 'railties', '>= 3.0.0'
   s.add_runtime_dependency 'thor',  '>= 0.14.6'
 end
