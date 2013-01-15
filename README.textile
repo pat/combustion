@@ -109,6 +109,10 @@ end</code></pre>
 
 Just like in a standard Rails app, if you have a mounted engine, then its routes are accessible through whatever it has been loaded as.
 
+h3. Using other Rails-focused libraries
+
+Be aware that other gems may require parts of Rails when they're loaded, and this could cause some issues with Combustion's own setup. You may need to manage the loading yourself by setting @:require@ to false in your Gemfile for the gem in question, and then requiring it manually in your spec_helper. View "this issue":https://github.com/pat/combustion/issues/33 for an example with FactoryGirl.
+
 h3. Environment and Logging
 
 Your tests will execute within the test environment for the internal Rails app - and so logs are available at @spec/internal/log/test.log@. You should probably create that log directory so Rails doesn't complain.
