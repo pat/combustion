@@ -13,7 +13,7 @@ module Combustion
 
     # Turn on ActiveRecord attribute whitelisting
     # This way the dummy app matches new rails apps re: this setting
-    config.active_record.whitelist_atributes = true if config.respond_to? :active_record
+    config.active_record.whitelist_attributes = true if config.respond_to? :active_record
 
     # Some settings we're not sure if we want, so let's not load them by default.
     # Instead, wait for this method to be invoked (to get around load-order
