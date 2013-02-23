@@ -57,7 +57,7 @@ Combustion.initialize! :active_record, :action_controller,
                        :action_view, :sprockets
 </code></pre>
 
-And then in your application's Gemfile:
+And then in your engine's Gemfile:
 
 <pre><code>
 group :test do
