@@ -97,7 +97,7 @@ module Combustion
             require 'active_record/railties/jdbcmysql_error'
             error_class = ArJdbcMySQL::Error
           else
-            error_class = config['adapter'] =~ /mysql2/ ? Mysql2::Error : Mysql::Error
+            error_class = config['adapter'] =~ /mysql2/ && defined?(Mysql2) ? Mysql2::Error : Mysql::Error
           end
           access_denied_error = 1045
           begin
