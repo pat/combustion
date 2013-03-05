@@ -4,7 +4,7 @@ module Combustion
   class Application < Rails::Application
     # Core Settings
     config.cache_classes               = true
-    config.whiny_nils                  = true
+    config.whiny_nils                  = true if Rails.version < '4.0.0'
     config.consider_all_requests_local = true
     config.secret_token                = Digest::SHA1.hexdigest Time.now.to_s
 
