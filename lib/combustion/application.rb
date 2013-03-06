@@ -7,6 +7,7 @@ module Combustion
     config.whiny_nils                  = true if Rails.version < '4.0.0'
     config.consider_all_requests_local = true
     config.secret_token                = Digest::SHA1.hexdigest Time.now.to_s
+    config.eager_load                  = Rails.env.production?
 
     # ActiveSupport Settings
     config.active_support.deprecation = :stderr
