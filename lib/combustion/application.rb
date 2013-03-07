@@ -1,3 +1,4 @@
+require 'securerandom'
 Rails.env = ENV['RAILS_ENV'] || 'test'
 
 module Combustion
@@ -8,6 +9,7 @@ module Combustion
     config.consider_all_requests_local = true
     config.secret_token                = Digest::SHA1.hexdigest Time.now.to_s
     config.eager_load                  = Rails.env.production?
+    config.secret_key_base             = SecureRandom.hex if Rails.version >= '4.0.0'
 
     # ActiveSupport Settings
     config.active_support.deprecation = :stderr
