@@ -21,7 +21,10 @@ module Combustion
         drop_database(abcs['test'])
         create_database(abcs['test'])
       when /sqlite/
-        drop_database(abcs['test'])
+        begin
+        drop_database(abcs['test']) 
+        rescue Errno::ENOENT
+        end
         create_database(abcs['test'])
       when 'sqlserver'
         test = abcs.deep_dup['test']
