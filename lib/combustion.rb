@@ -15,7 +15,7 @@ module Combustion
   end
 
   def self.initialize!(*modules)
-    modules = Modules if modules == [:all]
+    modules = Modules if (modules == [:all]) || modules.empty?
     modules.each { |mod| require "#{mod}/railtie" }
 
     Combustion::Application.configure_for_combustion
