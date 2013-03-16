@@ -1,4 +1,4 @@
-Edge:
+0.4.0 - March 16th 2013
 * Don't delete the SQLite test database if it doesn't exist (Michael Gee, Alexander Rozumiy).
 * Support for secret_key_base for Rails 4 apps (Philip Arndt).
 * eager_load is set to true when using the production environment (Philip Arndt).
