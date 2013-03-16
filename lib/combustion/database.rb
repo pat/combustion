@@ -148,7 +148,7 @@ module Combustion
         path = Pathname.new(config['database'])
         file = path.absolute? ? path.to_s : File.join(Rails.root, path)
 
-        FileUtils.rm_f(file)
+        FileUtils.rm_f(file) if File.exist?(file)
       when /^(jdbc)?postgresql$/
         ActiveRecord::Base.establish_connection(config.merge('database' => 'postgres', 'schema_search_path' => 'public'))
         ActiveRecord::Base.connection.drop_database config['database']
