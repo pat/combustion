@@ -1,4 +1,10 @@
 Edge:
+* Don't delete the SQLite test database if it doesn't exist (Michael Gee, Alexander Rozumiy).
+* Support for secret_key_base for Rails 4 apps (Philip Arndt).
+* eager_load is set to true when using the production environment (Philip Arndt).
+* whiny_nils is not set if using Rails 4 (Philip Arndt).
+* Mysql2 can raise Mysql::Error with JRuby (Philip Arndt).
+* Whitelist attributes typo is fixed (Geoff Hodgson).
 * Mass assignment checks are now turned on, so errors are raised. This matches Rails' defaults for test environments (Josh Adams).
 * Combustion no longer loads all of the Rails stack by default, just Railties and ActiveSupport. A combustion-rails gem will be created that uses all of Rails by default (Philip Arndt).
 * Combustion classes now all define the outer module, so each can be required by themselves, should you desire (Philip Arndt).
