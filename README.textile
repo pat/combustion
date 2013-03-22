@@ -88,6 +88,14 @@ Both follow the same structure as in any normal Rails application - and the sche
   end
 end</code></pre>
 
+You can also seed your database by creating db/seeds.rb and setting <code>COMBUSTION_SEED = true</code> before the application is initialized. Your seed file might look something like:
+
+<pre><code>User.create(username: "combustion-test", password: "secret")
+
+10.times do |n|
+  Post.create(title: "Test Post #{n}", body: "This is a test post.")
+end</code></pre>
+
 h3. Configuring Combustion to initialise the test db from a .sql file instead of schema.rb
 
 Name the file structure.sql and configure Combustion to use it before initialising:
