@@ -5,6 +5,7 @@ module Combustion
         reset_database
         load_schema
         migrate
+        seed if defined?(COMBUSTION_SEED)
       end
     end
 
@@ -65,6 +66,11 @@ module Combustion
       # Append the migrations inside the internal app's db/migrate directory
       paths << File.join(Rails.root, 'db/migrate')
       migrator.migrate paths, nil
+    end
+
+    def self.seed
+      seed_file = Rails.root.join('db', 'seeds.rb')
+      load(seed_file) if File.exists?(seed_file)
     end
 
     private
