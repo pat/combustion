@@ -5,11 +5,11 @@ module Combustion
   class Application < Rails::Application
     # Core Settings
     config.cache_classes               = true
-    config.whiny_nils                  = true if Rails.version < '4.0.0'
+    config.whiny_nils                  = true if Rails.version.to_s < '4.0.0'
     config.consider_all_requests_local = true
     config.secret_token                = Digest::SHA1.hexdigest Time.now.to_s
     config.eager_load                  = Rails.env.production?
-    config.secret_key_base             = SecureRandom.hex if Rails.version >= '4.0.0'
+    config.secret_key_base             = SecureRandom.hex if Rails.version.to_s >= '4.0.0'
 
     # ActiveSupport Settings
     config.active_support.deprecation = :stderr
