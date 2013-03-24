@@ -7,7 +7,7 @@ module Combustion
   self.path          = '/spec/internal'
   self.schema_format = :ruby
 
-  if Rails.version > '3.1'
+  if Rails.version.to_s > '3.1'
     Modules = %w( active_record action_controller action_view action_mailer
       sprockets )
   else
