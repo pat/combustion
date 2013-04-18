@@ -18,6 +18,8 @@ module Combustion
     modules = Modules if modules == [:all]
     modules.each { |mod| require "#{mod}/railtie" }
 
+    Bundler.require :default, Rails.env
+
     Combustion::Application.configure_for_combustion
     Combustion::Application.initialize!
 
