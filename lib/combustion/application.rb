@@ -1,5 +1,4 @@
 require 'securerandom'
-Rails.env = ENV['RAILS_ENV'] || 'test'
 
 module Combustion
   class Application < Rails::Application
