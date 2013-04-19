@@ -41,5 +41,9 @@ module Combustion
         config.assets.enabled = true
       end
     end
+
+    initializer :load_customized_environment_for_combustion, :before => :load_environment_config, :group => :all do
+      Combustion::Application.class_eval(&Combustion.setup_environment) if Combustion.setup_environment
+    end
   end
 end

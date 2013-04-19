@@ -3,6 +3,7 @@ require 'active_support/dependencies'
 
 module Combustion
   mattr_accessor :path, :schema_format
+  mattr_reader :setup_environment
 
   self.path          = '/spec/internal'
   self.schema_format = :ruby
@@ -14,7 +15,9 @@ module Combustion
     Modules = %w( active_record action_controller action_view action_mailer )
   end
 
-  def self.initialize!(*modules)
+  def self.initialize!(*modules, &block)
+    @@setup_environment = block if block_given?
+
     modules = Modules if modules == [:all]
     modules.each { |mod| require "#{mod}/railtie" }
 
