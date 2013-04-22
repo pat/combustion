@@ -20,10 +20,9 @@ In your `spec_helper.rb`, get Combustion to set itself up - which has to happen 
 
 ```ruby
 require 'rubygems'
-require 'bundler'
+require 'bundler/setup'
 
-Bundler.require :default, :test
-
+require 'combustion'
 require 'capybara/rspec'
 
 Combustion.initialize!
