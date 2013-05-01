@@ -1,5 +1,7 @@
-0.5.0 - April 1st 2013
+0.5.0 - May 1st 2013
+* whitelist_attributes is now set within configure_for_combustion, as it depends on which Railties are loaded.
 * Make sure Rails gems are loaded before the engine's gem (Pablo Herrero).
+* Fixed Rails version comparison (Josh Adam).
 
 0.4.0 - March 16th 2013
 * Don't delete the SQLite test database if it doesn't exist (Michael Gee, Alexander Rozumiy).
