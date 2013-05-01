@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.version     = '0.5.0'
   s.authors     = ['Pat Allan']
   s.email       = ['pat@freelancing-gods.com']
-  s.homepage    = ''
+  s.homepage    = 'https://github.com/pat/combustion'
   s.summary     = 'Elegant Rails Engine Testing'
   s.description = 'Test your Rails Engines without needing a full Rails app'
 
