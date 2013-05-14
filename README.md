@@ -127,6 +127,20 @@ end
 
 Just like in a standard Rails app, if you have a mounted engine, then its routes are accessible through whatever it has been loaded as.
 
+### Customizing Rails application settings
+
+If you would like to specify any Rails configuration parameter, you can do it without creating any environment file, simply passing a block to Combustion.initialize! like this:
+
+```ruby
+Combustion.initialize! :all do
+  config.active_record.whitelist_attributes = false
+end
+```
+
+Values given through the initialize! block will be set during Rails initialization proccess, exactly before the corresponding environment file inside `spec/internals/config/enviroments` is loaded (when that file exists), overriding Combustion's defaults.
+
+Parameters defined in, for instance, `spec/internals/config/environments/test.rb`, would override Combustion's defaults and also config settings passed to initialize!.
+
 ### Using other Rails-focused libraries
 
 Be aware that other gems may require parts of Rails when they're loaded, and this could cause some issues with Combustion's own setup. You may need to manage the loading yourself by setting `:require` to false in your Gemfile for the gem in question, and then requiring it manually in your spec_helper. View [issue #33](https://github.com/pat/combustion/issues/33) for an example with FactoryGirl.
