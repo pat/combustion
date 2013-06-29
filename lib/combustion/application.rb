@@ -23,7 +23,7 @@ module Combustion
       if defined? ActiveRecord::Railtie
         # Turn on ActiveRecord attribute whitelisting
         # This way the dummy app matches new rails apps re: this setting
-        config.active_record.whitelist_attributes = true
+        config.active_record.whitelist_attributes = true if ActiveRecord::VERSION::STRING >= '3.1.0'
       end
 
       if defined? ActionController::Railtie

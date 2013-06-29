@@ -64,7 +64,12 @@ module Combustion
       end
       # Append the migrations inside the internal app's db/migrate directory
       paths << File.join(Rails.root, 'db/migrate')
-      migrator.migrate paths, nil
+
+      if ActiveRecord::VERSION::STRING >= '3.1.0'
+        migrator.migrate paths, nil
+      else
+        paths.each { |path| migrator.migrate path, nil }
+      end
     end
 
     private
