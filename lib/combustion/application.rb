@@ -20,24 +20,24 @@ module Combustion
     def self.configure_for_combustion
       config.root = File.expand_path File.join(Dir.pwd, Combustion.path)
 
-      if defined? ActiveRecord::Railtie
+      if defined?(ActiveRecord::Railtie) && ::ActiveRecord.constants.include?(:MassAssignmentSecurity)
         # Turn on ActiveRecord attribute whitelisting
         # This way the dummy app matches new rails apps re: this setting
-        config.active_record.whitelist_attributes = true if ActiveRecord::VERSION::STRING >= '3.1.0'
+        config.active_record.whitelist_attributes = true
       end
 
-      if defined? ActionController::Railtie
+      if defined?(ActionController::Railtie)
         config.action_dispatch.show_exceptions            = false
         config.action_controller.perform_caching          = false
         config.action_controller.allow_forgery_protection = false
       end
 
-      if defined? ActionMailer::Railtie
+      if defined?(ActionMailer::Railtie)
         config.action_mailer.delivery_method     = :test
         config.action_mailer.default_url_options = {:host => 'www.example.com'}
       end
 
-      if defined? Sprockets
+      if defined?(Sprockets)
         config.assets.enabled = true
       end
     end
