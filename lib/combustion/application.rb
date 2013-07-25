@@ -23,7 +23,8 @@ module Combustion
       if defined?(ActiveRecord::Railtie) && ::ActiveRecord.constants.include?(:MassAssignmentSecurity)
         # Turn on ActiveRecord attribute whitelisting
         # This way the dummy app matches new rails apps re: this setting
-        config.active_record.whitelist_attributes = true
+        config.active_record.whitelist_attributes      = true
+        config.active_record.mass_assignment_sanitizer = :strict
       end
 
       if defined?(ActionController::Railtie)
