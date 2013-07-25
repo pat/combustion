@@ -1,3 +1,9 @@
+0.5.1 - July 25th 2013
+* Mass assignment errors raise exceptions instead of just being logged (Pat Allan).
+* whilelist_attributes is only set for Rails 3.2 apps (Philip Arndt).
+* Support ActiveRecord 3.0.x (Philip Arndt).
+* Allow custom application configuration (Pablo Herrero).
+
 0.5.0 - May 1st 2013
 * whitelist_attributes is now set within configure_for_combustion, as it depends on which Railties are loaded.
 * Make sure Rails gems are loaded before the engine's gem (Pablo Herrero).
