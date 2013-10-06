@@ -25,7 +25,7 @@ require 'bundler/setup'
 require 'combustion'
 require 'capybara/rspec'
 
-Combustion.initialize!
+Combustion.initialize! :all
 
 require 'rspec/rails'
 require 'capybara/rails'
@@ -55,7 +55,7 @@ If you want your app to be located somewhere other than `spec/internal`, then ma
 
 ```ruby
 Combustion.path = 'spec/dummy'
-Combustion.initialize!
+Combustion.initialize! :all
 ```
 
 
@@ -108,7 +108,7 @@ Name the file structure.sql and configure Combustion to use it before initialisi
 
 ```ruby
 Combustion.schema_format = :sql
-Combustion.initialize!
+Combustion.initialize! :all
 ```
 
 Any models that aren't provided by your engine should be located at `spec/internal/app/models`.
