@@ -9,6 +9,7 @@ module Combustion
     end
 
     def self.reset_database
+      ActiveRecord::Base.configurations = YAML.load_file("#{Rails.root}/config/database.yml")
       abcs = ActiveRecord::Base.configurations
       case abcs['test']['adapter']
       when /mysql/
