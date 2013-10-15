@@ -4,4 +4,3 @@ Gemfile.lock
 pkg/*
 .rvmrc
 .ruby-version
-.idea
