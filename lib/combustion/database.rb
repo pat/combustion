@@ -13,9 +13,8 @@ module Combustion
       abcs = ActiveRecord::Base.configurations
       case abcs['test']['adapter']
       when /mysql/
-        ActiveRecord::Base.establish_connection(:test)
-        ActiveRecord::Base.connection.recreate_database(abcs['test']['database'],
-          mysql_creation_options(abcs['test']))
+        drop_database(abcs['test']['database'])
+        create_database(abcs['test'])
         ActiveRecord::Base.establish_connection(:test)
       when /postgresql/
         ActiveRecord::Base.clear_active_connections!
