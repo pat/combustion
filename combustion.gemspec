@@ -7,6 +7,7 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/pat/combustion'
   s.summary     = 'Elegant Rails Engine Testing'
   s.description = 'Test your Rails Engines without needing a full Rails app'
+  s.license     = 'MIT'
 
   s.rubyforge_project = 'combustion'
 
