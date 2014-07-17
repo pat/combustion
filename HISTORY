@@ -1,3 +1,10 @@
+0.5.2 - July 18th 2014
+* Note MIT licence in gemspec (@ktdreyer).
+* Use local create/drop methods when resetting database (Bryan Ricker).
+* ERB is now supported in config/database.yml, matching Rails (@patorash).
+* The database now is configured before the application is loaded (@patorash).
+* Documentation and generated config.ru now specify explicly loading all Rails libraries by default (Pat Allan).
+
 0.5.1 - July 25th 2013
 * Mass assignment errors raise exceptions instead of just being logged (Pat Allan).
 * whilelist_attributes is only set for Rails 3.2 apps (Philip Arndt).
