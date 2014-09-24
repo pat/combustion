@@ -25,11 +25,13 @@ module Combustion
 
     Combustion::Application.configure_for_combustion
 
-    Combustion::Application.initialize!
-
     if modules.map(&:to_s).include? 'active_record'
-      Combustion::Database.setup
+      Combustion::Application.config.to_prepare do
+        Combustion::Database.setup
+      end
     end
+
+    Combustion::Application.initialize!
 
     RSpec.configure do |config|
       include_capybara_into config
