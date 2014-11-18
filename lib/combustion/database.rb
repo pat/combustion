@@ -57,11 +57,16 @@ module Combustion
 
     def self.migrate
       migrator = ActiveRecord::Migrator
-      paths    = Array('db/migrate/')
 
       if migrator.respond_to?(:migrations_paths)
         paths = migrator.migrations_paths
+      else
+        paths = Array('db/migrate/')
       end
+
+      paths   += Rails.application.paths['db/migrate'].to_a
+      paths.uniq!
+
       # Append the migrations inside the internal app's db/migrate directory
       paths << File.join(Rails.root, 'db/migrate')
 
