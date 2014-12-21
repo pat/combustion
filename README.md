@@ -172,7 +172,7 @@ end
 
 ## Compatibility
 
-Developed for Rails 3.1 and Ruby 1.9. It should work on any other Ruby, and possibly Rails 3.0, but will not work neatly with earlier versions of Rails.
+Developed for Rails 3.1 or better (including Rails 4) and Ruby 1.9 or better. It should work on any other Ruby, and possibly Rails 3.0, but will not work neatly with earlier versions of Rails.
 
 ## Limitations and Known Issues
 
