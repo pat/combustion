@@ -174,6 +174,8 @@ end
 
 Developed for Rails 3.1 or better (including Rails 4) and Ruby 1.9 or better. It should work on any other Ruby, and possibly Rails 3.0, but will not work neatly with earlier versions of Rails.
 
+You can also use Combustion with multiple versions of Rails to test compatibility across them. [Appraisal](https://github.com/thoughtbot/appraisal) is a gem that can help with this, and a good starting reference is the [Thinking Sphinx](https://github.com/pat/thinking-sphinx) test suite, which runs against [multiple versions](https://github.com/pat/thinking-sphinx/blob/master/Appraisals) of Rails.
+
 ## Limitations and Known Issues
 
 Combustion is currently written with the expectation it'll be used with RSpec. I'd love to make this more flexible - if you want to give it a shot before I get around to it, patches are very much welcome.
