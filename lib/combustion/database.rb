@@ -1,11 +1,9 @@
 module Combustion
   class Database
     def self.setup
-      silence_stream(STDOUT) do
-        reset_database
-        load_schema
-        migrate
-      end
+      reset_database
+      load_schema
+      migrate
     end
 
     def self.reset_database
