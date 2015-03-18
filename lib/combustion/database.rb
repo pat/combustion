@@ -55,14 +55,16 @@ module Combustion
 
     def self.migrate
       migrator = ActiveRecord::Migrator
+      engine_path = Rails.application.root.sub(::Combustion.path, '')
+      engine_migration_paths = Rails.application.paths['db/migrate'].to_a
 
-      if migrator.respond_to?(:migrations_paths)
-        paths = migrator.migrations_paths
+      if engine_migration_paths.include?(engine_path.join('db/migrate').to_s)
+        paths = []
       else
-        paths = Array('db/migrate/')
+        paths = base_migration_paths
       end
 
-      paths   += Rails.application.paths['db/migrate'].to_a
+      paths += engine_migration_paths
       paths.uniq!
 
       # Append the migrations inside the internal app's db/migrate directory
@@ -76,6 +78,14 @@ module Combustion
     end
 
     private
+
+    def self.base_migration_paths
+      if ActiveRecord::Migrator.respond_to?(:migrations_paths)
+        ActiveRecord::Migrator.migrations_paths
+      else
+        Array('db/migrate/')
+      end
+    end
 
     def self.create_database(config)
       begin
