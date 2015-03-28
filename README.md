@@ -184,6 +184,8 @@ I've not tried using this with Cucumber, but it should work in theory without to
 
 ## Contributing
 
+Please note that this project now has a [Contributor Code of Conduct](http://contributor-covenant.org/version/1/0/0/). By participating in this project you agree to abide by its terms.
+
 Contributions are very much welcome - but keep in mind the following:
 
 * Keep patches in a separate branch
