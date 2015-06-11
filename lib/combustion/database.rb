@@ -161,6 +161,8 @@ module Combustion
         ActiveRecord::Base.establish_connection(config.merge('database' => 'postgres', 'schema_search_path' => 'public'))
         ActiveRecord::Base.connection.drop_database config['database']
       end
+    rescue => e
+      raise e unless e.message =~ /^Unknown database/
     end
 
     def self.mysql_creation_options(config)
