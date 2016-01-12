@@ -11,7 +11,7 @@ module Combustion
       abcs = ActiveRecord::Base.configurations
       case abcs['test']['adapter']
       when /mysql/
-        drop_database(abcs['test']['database'])
+        drop_database(abcs['test'])
         create_database(abcs['test'])
         ActiveRecord::Base.establish_connection(:test)
       when /postgresql/
@@ -171,6 +171,8 @@ module Combustion
         ActiveRecord::Base.establish_connection(config.merge('database' => 'postgres', 'schema_search_path' => 'public'))
         ActiveRecord::Base.connection.drop_database config['database']
       end
+    rescue => e
+      raise e unless e.message =~ /^Unknown database/
     end
 
     def self.mysql_creation_options(config)
