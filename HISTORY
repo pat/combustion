@@ -1,3 +1,10 @@
+0.5.4 - January 12th 2016
+* Remove silent_stream call for Rails 5.0 compatability (Bryan Ricker).
+* Fix duplicate migrations error (Semyon Pupkov).
+
+0.5.3 - March 1st 2015
+* Use migrations from dependent gems (Korotaev Danil, Меркушин Михаил).
+
 0.5.2 - July 18th 2014
 * Note MIT licence in gemspec (@ktdreyer).
 * Use local create/drop methods when resetting database (Bryan Ricker).
