@@ -14,7 +14,7 @@ module Combustion
         drop_database(abcs['test']['database'])
         create_database(abcs['test'])
         ActiveRecord::Base.establish_connection(:test)
-      when /postgresql/
+      when /postgresql/, /postgis/
         ActiveRecord::Base.clear_active_connections!
         drop_database(abcs['test'])
         create_database(abcs['test'])
@@ -150,6 +150,16 @@ module Combustion
             $stderr.puts e, *(e.backtrace)
             $stderr.puts "Couldn't create database for #{config.inspect}"
           end
+          when /^(jdbc)?postgis$/
+            @encoding = config['encoding'] || ENV['CHARSET'] || 'utf8'
+            begin
+              ActiveRecord::Base.establish_connection(config.merge('database' => 'postgres', 'schema_search_path' => 'public, postgis'))
+              ActiveRecord::Base.connection.create_database(config['database'], config.merge('encoding' => @encoding))
+              ActiveRecord::Base.establish_connection(config)
+            rescue Exception => e
+              $stderr.puts e, *(e.backtrace)
+              $stderr.puts "Couldn't create database for #{config.inspect}"
+            end
         end
       else
         $stderr.puts "#{config['database']} already exists"
@@ -169,6 +179,10 @@ module Combustion
         FileUtils.rm_f(file) if File.exist?(file)
       when /^(jdbc)?postgresql$/
         ActiveRecord::Base.establish_connection(config.merge('database' => 'postgres', 'schema_search_path' => 'public'))
+        ActiveRecord::Base.connection.drop_database config['database']
+      end
+    when /^(jdbc)?postgis$/
+        ActiveRecord::Base.establish_connection(config.merge('database' => 'postgres', 'schema_search_path' => 'public, postgis'))
         ActiveRecord::Base.connection.drop_database config['database']
       end
     end
