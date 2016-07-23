@@ -19,16 +19,18 @@ gem 'combustion', '~> 0.5.4', :group => :test
 In your `spec_helper.rb`, get Combustion to set itself up - which has to happen before you introduce `rspec/rails` and - if being used - `capybara/rails`. Here's an example within context:
 
 ```ruby
-require 'rubygems'
-require 'bundler/setup'
+require 'bundler'
 
-require 'combustion'
-require 'capybara/rspec'
+Bundler.require :default, :development
 
+# If you're using all parts of Rails:
 Combustion.initialize! :all
+# Or, load just what you need:
+# Combustion.initialize! :active_record, :action_controller
 
 require 'rspec/rails'
-require 'capybara/rails'
+# If you're using Capybara:
+# require 'capybara/rails'
 
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
