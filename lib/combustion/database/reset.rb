@@ -29,7 +29,7 @@ class Combustion::Database::Reset
     @operator ||= case configuration['adapter']
     when /mysql/
       Combustion::Databases::MySQL
-    when /postgresql/
+    when /postgresql/, /postgis/
       Combustion::Databases::PostgreSQL
     when /sqlite/
       Combustion::Databases::SQLite

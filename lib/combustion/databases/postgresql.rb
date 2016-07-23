@@ -29,7 +29,11 @@ class Combustion::Databases::PostgreSQL < Combustion::Databases::Base
   def postgres_configuration
     configuration.merge(
       'database'           => 'postgres',
-      'schema_search_path' => 'public'
+      'schema_search_path' => schema_search_path
     )
+  end
+
+  def schema_search_path
+    configuration['adapter'][/postgis/] ? 'public, postgis' : 'public'
   end
 end
