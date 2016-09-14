@@ -21,9 +21,9 @@ module Combustion
     modules = Modules if modules == [:all]
     modules.each { |mod| require "#{mod}/railtie" }
 
-    Bundler.require :default, Rails.env
-
     Combustion::Application.configure_for_combustion
+
+    Bundler.require :default, Rails.env
 
     if modules.map(&:to_s).include? 'active_record'
       Combustion::Application.config.to_prepare do
