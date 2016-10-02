@@ -2,9 +2,9 @@ class Combustion::Databases::MySQL < Combustion::Databases::Base
   ACCESS_DENIED_ERROR = 10145
 
   def reset
-    super
+    establish_connection(configuration.merge('database' => nil))
 
-    establish_connection :test
+    super
   end
 
   private
@@ -18,7 +18,6 @@ class Combustion::Databases::MySQL < Combustion::Databases::Base
   end
 
   def create
-    establish_connection configuration.merge('database' => nil)
     connection.create_database configuration['database'], creation_options
     establish_connection configuration
   rescue error_class => error
@@ -47,7 +46,6 @@ class Combustion::Databases::MySQL < Combustion::Databases::Base
   end
 
   def drop
-    establish_connection configuration
     connection.drop_database configuration['database']
   end
 

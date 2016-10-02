@@ -4,4 +4,4 @@ Gemfile.lock
 pkg/*
 .rvmrc
 .ruby-version
-spec/dummy/spec/internal/db/combustion_test.sqlite
+spec/dummy/spec/internal/db/*.sqlite

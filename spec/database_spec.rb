@@ -1,17 +1,28 @@
-require 'spec_helper'
-require File.expand_path("../dummy/lib/engine.rb", __FILE__)
-
 module Combustion
   describe Database do
-    before do
+    before(:all) do
       Dir.chdir(File.expand_path('../dummy', __FILE__)) do
         Combustion.initialize! :active_record
       end
     end
 
-    it 'run migration from dummy engine' do
-      expect(ActiveRecord::Base.connection.table_exists?('dummy_table')).to eq true
+    it 'creates dummy table from migration in base database' do
+      expect(Model.connection.table_exists?('dummy_table')).to eq true
+      expect(Model.connection.table_exists?('dummy_in_another_db')).to eq false
+    end
+
+    it 'creates another dummy table from another database' do
+      expect(ModelInAnotherDb.connection.table_exists?('dummy_table')).to eq false
+      expect(ModelInAnotherDb.connection.table_exists?('dummy_in_another_db')).to eq true
+
+    end
+
+    it 'returns test databse for model with default connection' do
+      expect(Model.connection_config[:database]).to match /test/
+    end
+
+    it 'returns test_another databse for model with connection to second database' do
+      expect(ModelInAnotherDb.connection_config[:database]).to match /test_another/
     end
   end
 end
-

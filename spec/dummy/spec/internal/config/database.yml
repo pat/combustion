@@ -1,3 +1,15 @@
-test:
-  adapter:  sqlite3
-  database: db/combustion_test.sqlite
+test: &defaults
+  adapter: <%= ENV.fetch("DB_ADAPTER") %>
+  database: test
+  <% if ENV["DB_HOST"] %>
+  host: <%= ENV["DB_HOST"] %>
+  <% end %>
+
+  <% if ENV["DB_USERNAME"] %>
+  username: <%= ENV["DB_USERNAME"] %>
+  <% end %>
+
+
+test_another:
+  <<: *defaults
+  database: test_another
