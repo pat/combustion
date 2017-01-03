@@ -8,6 +8,8 @@ class Combustion::Databases::Base
   def reset
     drop
     create
+
+    establish_connection(:test)
   end
 
   private

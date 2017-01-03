@@ -4,8 +4,8 @@ module Combustion
   end
 
   class Database
-    def self.setup(adapter = nil)
-      Combustion::Database::Reset.call adapter
+    def self.setup
+      Combustion::Database::Reset.call
       Combustion::Database::LoadSchema.call
       Combustion::Database::Migrate.call
     end

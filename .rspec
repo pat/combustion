@@ -1,0 +1,4 @@
+--color
+--tty
+--order random
+--require spec_helper.rb

@@ -1,32 +1,26 @@
 class Combustion::Database::Reset
   UnsupportedDatabase = Class.new StandardError
 
-  def self.call(adapter = nil)
-    new(adapter).call
+  def self.call
+    new.call
   end
 
-  def initialize(adapter = nil)
-    @adapter = adapter
-
-    set_configurations
+  def initialize
+    ActiveRecord::Base.configurations = YAML.load(
+      ERB.new(File.read("#{Rails.root}/config/database.yml")).result
+    )
   end
 
   def call
-    operator.reset
+    ActiveRecord::Base.configurations.values.each do |conf|
+      operator_class(conf['adapter']).new(conf).reset
+    end
   end
 
   private
 
-  def configuration
-    @configuration ||= ActiveRecord::Base.configurations['test']
-  end
-
-  def operator
-    operator_class.new configuration
-  end
-
-  def operator_class
-    @operator ||= case configuration['adapter']
+  def operator_class(adapter)
+    @operator ||= case adapter
     when /mysql/
       Combustion::Databases::MySQL
     when /postgresql/, /postgis/
@@ -41,13 +35,7 @@ class Combustion::Database::Reset
       Combustion::Databases::Firebird
     else
       raise UnsupportedDatabase,
-        "Unsupported database type: #{configuration['adapter']}"
+        "Unsupported database type: #{adapter}"
     end
-  end
-
-  def set_configurations
-    ActiveRecord::Base.configurations = YAML.load(
-      ERB.new(File.read("#{Rails.root}/config/database.yml")).result
-    )
   end
 end
