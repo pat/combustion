@@ -46,6 +46,7 @@ combust
 bundle exec combust
 ```
 
+Minitest support is considered to be experimental, but it's certainly working [for some](https://github.com/pat/combustion/issues/78). Comments on others' experiences are welcome!
 
 What Combustion is doing is setting up a Rails application at `spec/internal` - but you only need to add the files within that directory that you're going to use. Read on for some detail about what that involves.
 
