@@ -1,3 +1,8 @@
+0.5.6
+* Run Bundler.require after setting up the app's configuration
+
+0.5.5
+
 0.5.4 - January 12th 2016
 * Remove silent_stream call for Rails 5.0 compatability (Bryan Ricker).
 * Fix duplicate migrations error (Semyon Pupkov).
