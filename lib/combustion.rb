@@ -18,6 +18,7 @@ module Combustion
   def self.initialize!(*modules, &block)
     @@setup_environment = block if block_given?
 
+    options = modules.extract_options!
     modules = Modules if modules == [:all]
     modules.each { |mod| require "#{mod}/railtie" }
 
@@ -27,7 +28,7 @@ module Combustion
 
     if modules.map(&:to_s).include? 'active_record'
       Combustion::Application.config.to_prepare do
-        Combustion::Database.setup
+        Combustion::Database.setup(options)
       end
     end
 

@@ -4,10 +4,10 @@ module Combustion
   end
 
   class Database
-    def self.setup
-      Combustion::Database::Reset.call
-      Combustion::Database::LoadSchema.call
-      Combustion::Database::Migrate.call
+    def self.setup(options = {})
+      Combustion::Database::Reset.call if options.fetch(:database_reset, true)
+      Combustion::Database::LoadSchema.call if options.fetch(:load_schema, true)
+      Combustion::Database::Migrate.call if options.fetch(:database_migrate, true)
     end
   end
 end
