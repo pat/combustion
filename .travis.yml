@@ -8,7 +8,12 @@ rvm:
   - 2.2.6
   - 2.3.3
   - 2.4.0
-script: 'bundle exec rspec'
+before_install:
+  - gem update --system
+  - gem install bundler
+before_script:
+  - bundle exec appraisal install
+script: 'bundle exec appraisal rspec'
 services:
   - mysql
   - postgresql
