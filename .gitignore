@@ -5,3 +5,5 @@ pkg/*
 .rvmrc
 .ruby-version
 spec/dummy/spec/internal/db/*.sqlite
+spec/dummy/spec/internal/test
+spec/dummy/spec/internal/test_another
