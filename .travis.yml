@@ -1,13 +1,11 @@
 language: ruby
-
 env:
   matrix:
     - "DB_ADAPTER=sqlite3"
     - "DB_ADAPTER=postgresql"
     - "DB_ADAPTER=mysql2"
-
 rvm:
   - 2.2.6
   - 2.3.3
-
+  - 2.4.0
 script: 'bundle exec rspec'
