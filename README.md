@@ -175,13 +175,13 @@ end
 
 ## Compatibility
 
-Developed for Rails 3.1 or better (including Rails 4) and Ruby 1.9 or better. It should work on any other Ruby, and possibly Rails 3.0, but will not work neatly with earlier versions of Rails.
+The current test matrix covers MRI 2.2 to 2.4, and Rails 3.1 to 5.0. It will possibly work on older versions and other Ruby implementations as well.
 
 You can also use Combustion with multiple versions of Rails to test compatibility across them. [Appraisal](https://github.com/thoughtbot/appraisal) is a gem that can help with this, and a good starting reference is the [Thinking Sphinx](https://github.com/pat/thinking-sphinx) test suite, which runs against [multiple versions](https://github.com/pat/thinking-sphinx/blob/master/Appraisals) of Rails.
 
 ## Limitations and Known Issues
 
-Combustion is currently written with the expectation it'll be used with RSpec. I'd love to make this more flexible - if you want to give it a shot before I get around to it, patches are very much welcome.
+Combustion is currently written with the expectation it'll be used with RSpec, but others have got it working with [Minitest](https://github.com/pat/combustion/issues/78). I'd love to make this more flexible - if you want to give it a shot before I get around to it, patches are very much welcome.
 
 I've not tried using this with Cucumber, but it should work in theory without too much hassle. Let me know if I'm wrong!
 
@@ -194,8 +194,8 @@ Contributions are very much welcome - but keep in mind the following:
 * Keep patches in a separate branch
 * Don't mess with the version or history file. I'll take care of that when the patch is merged in.
 
-There are no tests - partly because Combustion was extracted out from the tests of HyperTiny's Dobro, and partly because there's not much code. Still, if you can find a clean way of testing this, that'd be fantastic.
+The tests are extremely minimal, and patches to extend the suite are especially welcome.
 
 ## Credits
 
-Copyright (c) 2011, Combustion is developed and maintained by Pat Allan, and is released under the open MIT Licence. Many thanks to HyperTiny for encouraging its development, and [all who have contributed patches](https://github.com/pat/combustion/contributors).
+Copyright (c) 2011-2017, Combustion is developed and maintained by Pat Allan, and is released under the open MIT Licence. Many thanks to HyperTiny for encouraging its development, and [all who have contributed patches](https://github.com/pat/combustion/contributors).
