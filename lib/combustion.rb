@@ -1,7 +1,12 @@
 require 'rails'
 require 'active_support/dependencies'
 
+Rails.env = ENV['RAILS_ENV'] || 'test'
+
 module Combustion
+  autoload :Application, 'combustion/application'
+  autoload :Database, 'combustion/database'
+
   mattr_accessor :path, :schema_format
   mattr_reader :setup_environment
 
@@ -55,6 +60,3 @@ module Combustion
     end
   end
 end
-
-require 'combustion/application'
-require 'combustion/database'
