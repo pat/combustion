@@ -6,6 +6,8 @@ class Combustion::Database::LoadSchema
   end
 
   def call
+    ActiveRecord::Schema.verbose = false
+
     case schema_format
     when :ruby
       load Rails.root.join('db', 'schema.rb')
