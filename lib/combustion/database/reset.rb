@@ -12,8 +12,11 @@ class Combustion::Database::Reset
   end
 
   def call
-    ActiveRecord::Base.configurations.values.each do |conf|
-      operator_class(conf['adapter']).new(conf).reset
+    ActiveRecord::Base.configurations.values.each do |configuration|
+      adapter = configuration['adapter'] ||
+                configuration['url'].split('://').first
+
+      operator_class(adapter).new(configuration).reset
     end
   end
 
