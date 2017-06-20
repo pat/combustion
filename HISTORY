@@ -1,4 +1,4 @@
-Edge
+0.7.0 - June 20th 2017
 * Confirm support for MRI frozen string literals.
 * Hide migration output (Michael Grosser).
 
