@@ -1,3 +1,15 @@
+Edge
+* Confirm support for MRI frozen string literals.
+* Hide migration output (Michael Grosser).
+
+0.6.0 - March 28th 2017
+* Optionally disable database reset, schema loading, migrations (Sergey Kucher).
+* Allow for multiple test databases (Semyon Pupkov).
+
+0.5.5 - July 23rd 2016
+* Add PostGIS support (Roland Koch).
+* MySQL parameter fix (Mathieu Leduc-Hamel).
+
 0.5.4 - January 12th 2016
 * Remove silent_stream call for Rails 5.0 compatability (Bryan Ricker).
 * Fix duplicate migrations error (Semyon Pupkov).
