@@ -8,7 +8,7 @@ class Combustion::Database::Reset
   end
 
   def initialize
-    ActiveRecord::Base.configurations = YAML.load(
+    ActiveRecord::Base.configurations = YAML.safe_load(
       ERB.new(File.read("#{Rails.root}/config/database.yml")).result
     )
   end
