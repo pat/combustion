@@ -15,7 +15,9 @@ Gem::Specification.new do |s|
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables   = `git ls-files -- exe/*`.split("\n").map{ |f| File.basename(f) }
+  s.executables   = `git ls-files -- exe/*`.split("\n").map do |file|
+    File.basename(file)
+  end
   s.bindir        = 'exe'
   s.require_paths = ['lib']
 

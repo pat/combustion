@@ -39,8 +39,7 @@ class Combustion::Database::Reset
     when 'firebird'
       Combustion::Databases::Firebird
     else
-      raise UnsupportedDatabase,
-        "Unsupported database type: #{adapter}"
+      raise UnsupportedDatabase, "Unsupported database type: #{adapter}"
     end
   end
 end

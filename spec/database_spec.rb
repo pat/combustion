@@ -16,7 +16,6 @@ module Combustion
     it 'creates another dummy table from another database' do
       expect(ModelInAnotherDb.connection.table_exists?('dummy_table')).to eq false
       expect(ModelInAnotherDb.connection.table_exists?('dummy_in_another_db')).to eq true
-
     end
 
     it 'returns test databse for model with default connection' do

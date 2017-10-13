@@ -11,8 +11,9 @@ module Combustion
   self.schema_format = :ruby
 
   if Rails.version.to_s > '3.1'
-    MODULES = %w( active_record action_controller action_view action_mailer
-      sprockets )
+    MODULES = %w(
+      active_record action_controller action_view action_mailer sprockets
+    )
   else
     MODULES = %w( active_record action_controller action_view action_mailer )
   end
