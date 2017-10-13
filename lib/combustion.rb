@@ -29,12 +29,12 @@ module Combustion
     Bundler.require :default, Rails.env
 
     Combustion::Application.configure_for_combustion
-    include_database options
+    include_database modules, options
     Combustion::Application.initialize!
     include_rspec
   end
 
-  def self.include_database(options)
+  def self.include_database(modules, options)
     return unless modules.map(&:to_s).include? "active_record"
 
     Combustion::Application.config.to_prepare do

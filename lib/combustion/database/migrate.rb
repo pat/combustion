@@ -26,7 +26,7 @@ class Combustion::Database::Migrate
   def engine_migration_paths
     migration_paths = Rails.application.paths["db/migrate"].to_a
 
-    if engine_paths_exist_in(migration_paths)
+    if engine_paths_exist_in?(migration_paths)
       migration_paths
     else
       base_migration_paths + migration_paths
