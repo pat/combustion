@@ -11,17 +11,17 @@ module Combustion
   self.schema_format = :ruby
 
   if Rails.version.to_s > '3.1'
-    Modules = %w( active_record action_controller action_view action_mailer
+    MODULES = %w( active_record action_controller action_view action_mailer
       sprockets )
   else
-    Modules = %w( active_record action_controller action_view action_mailer )
+    MODULES = %w( active_record action_controller action_view action_mailer )
   end
 
   def self.initialize!(*modules, &block)
     @@setup_environment = block if block_given?
 
     options = modules.extract_options!
-    modules = Modules if modules == [:all]
+    modules = MODULES if modules == [:all]
     modules.each { |mod| require "#{mod}/railtie" }
 
     Bundler.require :default, Rails.env
