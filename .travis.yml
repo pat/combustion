@@ -15,7 +15,7 @@ before_install:
 before_script:
   - ./bin/literals
   - bundle exec appraisal install
-script: 'bundle exec appraisal rspec'
+script: 'bundle exec appraisal rake'
 services:
   - mysql
   - postgresql
