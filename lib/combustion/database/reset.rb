@@ -14,7 +14,7 @@ class Combustion::Database::Reset
   end
 
   def call
-    ActiveRecord::Base.configurations.values.each do |configuration|
+    ActiveRecord::Base.configurations.each_value do |configuration|
       adapter = configuration['adapter'] ||
                 configuration['url'].split('://').first
 
