@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 if RUBY_VERSION.to_f <= 2.3
   appraise "rails-3.1" do
     gem "rails", "~> 3.1.12"

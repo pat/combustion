@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Combustion::Databases::MySQL < Combustion::Databases::Base
   ACCESS_DENIED_ERROR = 10145
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Combustion
   describe Database do
     before(:all) do

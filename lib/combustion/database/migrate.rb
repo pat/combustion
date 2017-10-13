@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Combustion::Database::Migrate
   def self.call
     new.call

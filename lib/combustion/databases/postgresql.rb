@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Combustion::Databases::PostgreSQL < Combustion::Databases::Base
   def reset
     base.clear_active_connections!

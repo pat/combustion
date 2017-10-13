@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ModelInAnotherDb < ActiveRecord::Base
   self.table_name = 'dummy_in_another_db'
 

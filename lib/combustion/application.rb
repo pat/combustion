@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'securerandom'
 Rails.env = ENV['RAILS_ENV'] || 'test'
 

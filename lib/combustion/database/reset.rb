@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Combustion::Database::Reset
   UnsupportedDatabase = Class.new StandardError
 

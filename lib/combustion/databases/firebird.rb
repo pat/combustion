@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Combustion::Databases::Firebird < Combustion::Databases::Base
   def reset
     establish_connection :test

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Combustion::Database::LoadSchema
   UnknownSchemaFormat = Class.new StandardError
 
