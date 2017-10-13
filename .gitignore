@@ -3,8 +3,9 @@
 Gemfile.lock
 gemfiles/*.lock
 pkg/*
-.rvmrc
+.rubocop-*-yml
 .ruby-version
+.rvmrc
 spec/dummy/spec/internal/db/*.sqlite
 spec/dummy/spec/internal/test
 spec/dummy/spec/internal/test_another

@@ -1,0 +1,31 @@
+inherit_from:
+  - https://gist.githubusercontent.com/pat/ba3b8ffb1901bfe5439b460943b6b019/raw/.rubocop.yml
+
+AllCops:
+  TargetRubyVersion: 2.2
+
+Layout/DotPosition:
+  EnforcedStyle: trailing
+
+Layout/CaseIndentation:
+  EnforcedStyle: end
+
+Layout/IndentHeredoc:
+  Enabled: false
+
+Lint/EndAlignment:
+  EnforcedStyleAlignWith: variable
+
+Metrics/BlockLength:
+  Exclude:
+    - 'combustion.gemspec'
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/MultilineTernaryOperator:
+  Exclude:
+    - 'spec/dummy/db/migrate/*.rb'
