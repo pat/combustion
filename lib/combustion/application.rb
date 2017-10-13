@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-require 'securerandom'
-Rails.env = ENV['RAILS_ENV'] || 'test'
+require "securerandom"
+Rails.env = ENV["RAILS_ENV"] || "test"
 
 module Combustion
   class Application < Rails::Application
     # Core Settings
     config.cache_classes               = true
-    config.whiny_nils                  = true if Rails.version.to_s < '4.0.0'
+    config.whiny_nils                  = true if Rails.version.to_s < "4.0.0"
     config.consider_all_requests_local = true
     config.secret_token                = Digest::SHA1.hexdigest Time.now.to_s
     config.eager_load                  = Rails.env.production?
-    config.secret_key_base             = SecureRandom.hex if Rails.version.to_s >= '4.0.0'
+    config.secret_key_base             = SecureRandom.hex if Rails.version.to_s >= "4.0.0"
 
     # ActiveSupport Settings
     config.active_support.deprecation = :stderr
@@ -37,7 +37,7 @@ module Combustion
 
       if defined?(ActionMailer::Railtie)
         config.action_mailer.delivery_method     = :test
-        config.action_mailer.default_url_options = {:host => 'www.example.com'}
+        config.action_mailer.default_url_options = {:host => "www.example.com"}
       end
 
       config.assets.enabled = true if defined?(Sprockets)

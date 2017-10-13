@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'fileutils'
-require 'pathname'
+require "fileutils"
+require "pathname"
 
 class Combustion::Databases::SQLite < Combustion::Databases::Base
   private
@@ -32,6 +32,6 @@ class Combustion::Databases::SQLite < Combustion::Databases::Base
   end
 
   def path
-    @path ||= Pathname.new configuration['database']
+    @path ||= Pathname.new configuration["database"]
   end
 end

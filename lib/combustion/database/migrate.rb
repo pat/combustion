@@ -6,7 +6,7 @@ class Combustion::Database::Migrate
   end
 
   def call
-    if ActiveRecord::VERSION::STRING >= '3.1.0'
+    if ActiveRecord::VERSION::STRING >= "3.1.0"
       migrator.migrate paths, nil
     else
       paths.each { |path| migrator.migrate path, nil }
@@ -19,7 +19,7 @@ class Combustion::Database::Migrate
     if migrator.respond_to?(:migrations_paths)
       migrator.migrations_paths
     else
-      Array('db/migrate/')
+      Array("db/migrate/")
     end
   end
 
@@ -28,15 +28,15 @@ class Combustion::Database::Migrate
   end
 
   def paths
-    engine_path     = Rails.application.root.sub(::Combustion.path, '')
-    migration_paths = Rails.application.paths['db/migrate'].to_a
+    engine_path     = Rails.application.root.sub(::Combustion.path, "")
+    migration_paths = Rails.application.paths["db/migrate"].to_a
 
-    paths = if migration_paths.include?(engine_path.join('db/migrate').to_s)
+    paths = if migration_paths.include?(engine_path.join("db/migrate").to_s)
       []
     else
       base_migration_paths
     end
 
-    (paths + migration_paths + [File.join(Rails.root, 'db/migrate')]).uniq
+    (paths + migration_paths + [File.join(Rails.root, "db/migrate")]).uniq
   end
 end

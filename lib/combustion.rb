@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require 'rails'
-require 'active_support/dependencies'
+require "rails"
+require "active_support/dependencies"
 
 module Combustion
   mattr_accessor :path, :schema_format, :setup_environment
 
-  self.path          = '/spec/internal'
+  self.path          = "/spec/internal"
   self.schema_format = :ruby
 
   MODULES = if Rails.version.to_f >= 3.1
@@ -26,7 +26,7 @@ module Combustion
 
     Combustion::Application.configure_for_combustion
 
-    if modules.map(&:to_s).include? 'active_record'
+    if modules.map(&:to_s).include? "active_record"
       Combustion::Application.config.to_prepare do
         Combustion::Database.setup(options)
       end
@@ -61,5 +61,5 @@ module Combustion
   end
 end
 
-require 'combustion/application'
-require 'combustion/database'
+require "combustion/application"
+require "combustion/database"

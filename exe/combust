@@ -2,7 +2,7 @@
 # -*- mode: ruby -*-
 # frozen_string_literal: true
 
-require 'combustion'
-require 'combustion/generator'
+require "combustion"
+require "combustion/generator"
 
 Combustion::Generator.start

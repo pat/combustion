@@ -9,20 +9,24 @@ class Combustion::Database::Reset
 
   def initialize
     ActiveRecord::Base.configurations = YAML.safe_load(
-      ERB.new(File.read("#{Rails.root}/config/database.yml")).result
+      ERB.new(database_yaml).result, [], [], true
     )
   end
 
   def call
     ActiveRecord::Base.configurations.each_value do |configuration|
-      adapter = configuration['adapter'] ||
-                configuration['url'].split('://').first
+      adapter = configuration["adapter"] ||
+                configuration["url"].split("://").first
 
       operator_class(adapter).new(configuration).reset
     end
   end
 
   private
+
+  def database_yaml
+    File.read "#{Rails.root}/config/database.yml"
+  end
 
   def operator_class(adapter)
     @operator ||= case adapter
@@ -34,9 +38,9 @@ class Combustion::Database::Reset
       Combustion::Databases::SQLite
     when /sqlserver/
       Combustion::Databases::SQLServer
-    when 'oci', 'oracle'
+    when "oci", "oracle"
       Combustion::Databases::Oracle
-    when 'firebird'
+    when "firebird"
       Combustion::Databases::Firebird
     else
       raise UnsupportedDatabase, "Unsupported database type: #{adapter}"

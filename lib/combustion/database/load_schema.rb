@@ -12,10 +12,10 @@ class Combustion::Database::LoadSchema
 
     case schema_format
     when :ruby
-      load Rails.root.join('db', 'schema.rb')
+      load Rails.root.join("db", "schema.rb")
     when :sql
       ActiveRecord::Base.connection.execute(
-        File.read(Rails.root.join('db', 'structure.sql'))
+        File.read(Rails.root.join("db", "structure.sql"))
       )
     else
       raise UnknownSchemaFormat, "Unknown schema format: #{schema_format}"

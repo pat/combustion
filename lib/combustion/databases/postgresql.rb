@@ -12,8 +12,8 @@ class Combustion::Databases::PostgreSQL < Combustion::Databases::Base
 
   def create
     connection.create_database(
-      configuration['database'],
-      configuration.merge('encoding' => encoding)
+      configuration["database"],
+      configuration.merge("encoding" => encoding)
     )
   rescue StandardError => error
     $stderr.puts error, *error.backtrace
@@ -21,21 +21,21 @@ class Combustion::Databases::PostgreSQL < Combustion::Databases::Base
   end
 
   def drop
-    connection.drop_database(configuration['database'])
+    connection.drop_database(configuration["database"])
   end
 
   def encoding
-    configuration['encoding'] || ENV['CHARSET'] || 'utf8'
+    configuration["encoding"] || ENV["CHARSET"] || "utf8"
   end
 
   def postgres_configuration
     configuration.merge(
-      'database'           => 'postgres',
-      'schema_search_path' => schema_search_path
+      "database"           => "postgres",
+      "schema_search_path" => schema_search_path
     )
   end
 
   def schema_search_path
-    configuration['adapter'][/postgis/] ? 'public, postgis' : 'public'
+    configuration["adapter"][/postgis/] ? "public, postgis" : "public"
   end
 end
