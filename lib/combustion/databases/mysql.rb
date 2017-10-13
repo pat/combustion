@@ -55,9 +55,11 @@ class Combustion::Databases::MySQL < Combustion::Databases::Base
     if configuration['adapter'] =~ /jdbc/
       #FIXME After Jdbcmysql gives this class
       require 'active_record/railties/jdbcmysql_error'
-      error_class = ArJdbcMySQL::Error
+      ArJdbcMySQL::Error
+    elsif config['adapter'] =~ /mysql2/ && defined?(Mysql2)
+      Mysql2::Error
     else
-      error_class = config['adapter'] =~ /mysql2/ && defined?(Mysql2) ? Mysql2::Error : Mysql::Error
+      Mysql::Error
     end
   end
 

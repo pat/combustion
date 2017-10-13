@@ -16,7 +16,7 @@ class Combustion::Databases::PostgreSQL < Combustion::Databases::Base
       configuration.merge('encoding' => encoding)
     )
 
-  rescue Exception => error
+  rescue StandardError => error
     $stderr.puts error, *(error.backtrace)
     $stderr.puts "Couldn't create database for #{configuration.inspect}"
   end

@@ -14,7 +14,7 @@ class Combustion::Databases::SQLite < Combustion::Databases::Base
 
     establish_connection configuration
     connection
-  rescue Exception => error
+  rescue StandardError => error
     $stderr.puts error, *(error.backtrace)
     $stderr.puts "Couldn't create database for #{configuration.inspect}"
   end

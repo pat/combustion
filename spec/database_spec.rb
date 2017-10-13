@@ -20,11 +20,12 @@ module Combustion
     end
 
     it 'returns test databse for model with default connection' do
-      expect(Model.connection_config[:database]).to match /test/
+      expect(Model.connection_config[:database]).to match(/test/)
     end
 
     it 'returns test_another databse for model with connection to second database' do
-      expect(ModelInAnotherDb.connection_config[:database]).to match /test_another/
+      expect(ModelInAnotherDb.connection_config[:database]).
+        to match(/test_another/)
     end
   end
 end
