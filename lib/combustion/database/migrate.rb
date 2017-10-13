@@ -31,10 +31,10 @@ class Combustion::Database::Migrate
     engine_path     = Rails.application.root.sub(::Combustion.path, '')
     migration_paths = Rails.application.paths['db/migrate'].to_a
 
-    if migration_paths.include?(engine_path.join('db/migrate').to_s)
-      paths = []
+    paths = if migration_paths.include?(engine_path.join('db/migrate').to_s)
+      []
     else
-      paths = base_migration_paths
+      base_migration_paths
     end
 
     (paths + migration_paths + [File.join(Rails.root, 'db/migrate')]).uniq

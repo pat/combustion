@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Combustion::Databases::MySQL < Combustion::Databases::Base
-  ACCESS_DENIED_ERROR = 10145
+  ACCESS_DENIED_ERROR = 10_145
 
   def reset
     establish_connection(configuration.merge('database' => nil))
@@ -53,7 +53,7 @@ class Combustion::Databases::MySQL < Combustion::Databases::Base
 
   def error_class
     if configuration['adapter'][/jdbc/]
-      # FIXME After Jdbcmysql gives this class
+      # FIXME: After Jdbcmysql gives this class
       require 'active_record/railties/jdbcmysql_error'
       ArJdbcMySQL::Error
     elsif config['adapter'][/mysql2/] && defined?(Mysql2)
@@ -65,9 +65,9 @@ class Combustion::Databases::MySQL < Combustion::Databases::Base
 
   def grant_statement
     <<-SQL
-GRANT ALL PRIVILEGES ON #{configuration['database']}.*
-TO '#{configuration['username']}'@'localhost'
-IDENTIFIED BY '#{configuration['password']}' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON #{configuration["database"]}.*
+TO '#{configuration["username"]}'@'localhost'
+IDENTIFIED BY '#{configuration["password"]}' WITH GRANT OPTION;
     SQL
   end
 end

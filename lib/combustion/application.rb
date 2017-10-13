@@ -40,9 +40,7 @@ module Combustion
         config.action_mailer.default_url_options = {:host => 'www.example.com'}
       end
 
-      if defined?(Sprockets)
-        config.assets.enabled = true
-      end
+      config.assets.enabled = true if defined?(Sprockets)
     end
 
     initializer :load_customized_environment_for_combustion, :before => :load_environment_config, :group => :all do

@@ -8,14 +8,14 @@ class Combustion::Databases::SQLite < Combustion::Databases::Base
 
   def create
     if exists?
-      $stderr.puts "#{config['database']} already exists"
+      $stderr.puts "#{config["database"]} already exists"
       return
     end
 
     establish_connection configuration
     connection
   rescue StandardError => error
-    $stderr.puts error, *(error.backtrace)
+    $stderr.puts error, *error.backtrace
     $stderr.puts "Couldn't create database for #{configuration.inspect}"
   end
 
