@@ -14,15 +14,17 @@ module Combustion
     end
 
     it "creates another dummy table from another database" do
-      expect(ModelInAnotherDb.connection.table_exists?("dummy_table")).to eq false
-      expect(ModelInAnotherDb.connection.table_exists?("dummy_in_another_db")).to eq true
+      expect(ModelInAnotherDb.connection.table_exists?("dummy_table")).
+        to eq false
+      expect(ModelInAnotherDb.connection.table_exists?("dummy_in_another_db")).
+        to eq true
     end
 
     it "returns test databse for model with default connection" do
       expect(Model.connection_config[:database]).to match(/test/)
     end
 
-    it "returns test_another databse for model with connection to second database" do
+    it "returns test_another for model with connection to second database" do
       expect(ModelInAnotherDb.connection_config[:database]).
         to match(/test_another/)
     end

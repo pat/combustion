@@ -23,20 +23,29 @@ class Combustion::Database::Migrate
     end
   end
 
+  def engine_migration_paths
+    migration_paths = Rails.application.paths["db/migrate"].to_a
+
+    if engine_paths_exist_in(migration_paths)
+      migration_paths
+    else
+      base_migration_paths + migration_paths
+    end
+  end
+
+  def engine_path
+    Rails.application.root.sub(::Combustion.path, "")
+  end
+
+  def engine_paths_exist_in?(paths)
+    paths.include?(engine_path.join("db/migrate").to_s)
+  end
+
   def migrator
     @migrator ||= ActiveRecord::Migrator
   end
 
   def paths
-    engine_path     = Rails.application.root.sub(::Combustion.path, "")
-    migration_paths = Rails.application.paths["db/migrate"].to_a
-
-    paths = if migration_paths.include?(engine_path.join("db/migrate").to_s)
-      []
-    else
-      base_migration_paths
-    end
-
-    (paths + migration_paths + [File.join(Rails.root, "db/migrate")]).uniq
+    (engine_migration_paths + [File.join(Rails.root, "db/migrate")]).uniq
   end
 end

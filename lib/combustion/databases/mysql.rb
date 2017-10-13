@@ -15,6 +15,12 @@ class Combustion::Databases::MySQL < Combustion::Databases::Base
     configuration["charset"] || ENV["CHARSET"] || "utf8"
   end
 
+  def charset_error
+    return "" unless config["charset"]
+
+    "(if you set the charset manually, make sure you have a matching collation)"
+  end
+
   def collation
     configuration["collation"] || ENV["COLLATION"] || "utf8_unicode_ci"
   end
@@ -23,23 +29,19 @@ class Combustion::Databases::MySQL < Combustion::Databases::Base
     connection.create_database configuration["database"], creation_options
     establish_connection configuration
   rescue error_class => error
-    if error.errno == ACCESS_DENIED_ERROR
-      create_as_root
-    else
-      $stderr.puts error.error
-      $stderr.puts "Couldn't create database for #{config.inspect}, charset: #{charset}, collation: #{collation}"
-      $stderr.puts "(if you set the charset manually, make sure you have a matching collation)" if config["charset"]
-    end
+    rescue_create_from error
   end
 
-  def create_as_root
-    print "#{sqlerr.error}. \nPlease provide the root password for your mysql installation\n>"
-    root_password = $stdin.gets.strip
+  def create_as_root(error)
     establish_connection configuration.merge(
-      "database" => nil, "username" => "root", "password" => root_password
+      "database" => nil,
+      "username" => "root",
+      "password" => request_password(error)
     )
+
     connection.create_database config["database"], creation_options
     connection.execute grant_statement
+
     establish_connection configuration
   end
 
@@ -69,5 +71,28 @@ GRANT ALL PRIVILEGES ON #{configuration["database"]}.*
 TO '#{configuration["username"]}'@'localhost'
 IDENTIFIED BY '#{configuration["password"]}' WITH GRANT OPTION;
     SQL
+  end
+
+  def request_password(error)
+    print <<-TXT.strip
+#{error.error}.
+Please provide the root password for your mysql installation
+>
+    TXT
+
+    $stdin.gets.strip
+  end
+
+  def rescue_create_from(error)
+    if error.errno == ACCESS_DENIED_ERROR
+      create_as_root(error)
+      return
+    end
+
+    $stderr.puts <<-TXT
+#{error.error}
+Couldn't create database for #{config.inspect}, charset: #{charset}, collation: #{collation}
+#{charset_error}
+    TXT
   end
 end

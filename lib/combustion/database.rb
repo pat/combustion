@@ -6,10 +6,18 @@ module Combustion
   end
 
   class Database
+    DEFAULT_OPTIONS = {
+      :database_reset   => true,
+      :load_schema      => true,
+      :database_migrate => true
+    }.freeze
+
     def self.setup(options = {})
-      Combustion::Database::Reset.call if options.fetch(:database_reset, true)
-      Combustion::Database::LoadSchema.call if options.fetch(:load_schema, true)
-      Combustion::Database::Migrate.call if options.fetch(:database_migrate, true)
+      options = DEFAULT_OPTIONS.merge options
+
+      Combustion::Database::Reset.call      if options[:database_reset]
+      Combustion::Database::LoadSchema.call if options[:load_schema]
+      Combustion::Database::Migrate.call    if options[:database_migrate]
     end
   end
 end

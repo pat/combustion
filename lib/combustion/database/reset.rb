@@ -3,6 +3,15 @@
 class Combustion::Database::Reset
   UnsupportedDatabase = Class.new StandardError
 
+  OPERATOR_PATTERNS = {
+    Combustion::Databases::MySQL => [/mysql/],
+    Combustion::Databases::PostgreSQL => [/postgres/, /postgis/],
+    Combustion::Databases::SQLite     => [/sqlite/],
+    Combustion::Databases::SQLServer  => [/sqlserver/],
+    Combustion::Databases::Oracle     => %w[ oci oracle ],
+    Combustion::Databases::Firebird   => %w[ firebird ]
+  }.freeze
+
   def self.call
     new.call
   end
@@ -29,21 +38,12 @@ class Combustion::Database::Reset
   end
 
   def operator_class(adapter)
-    @operator ||= case adapter
-    when /mysql/
-      Combustion::Databases::MySQL
-    when /postgres/, /postgis/
-      Combustion::Databases::PostgreSQL
-    when /sqlite/
-      Combustion::Databases::SQLite
-    when /sqlserver/
-      Combustion::Databases::SQLServer
-    when "oci", "oracle"
-      Combustion::Databases::Oracle
-    when "firebird"
-      Combustion::Databases::Firebird
-    else
-      raise UnsupportedDatabase, "Unsupported database type: #{adapter}"
+    klass = nil
+    OPERATOR_PATTERNS.each do |operator, keys|
+      klass = operator if keys.any? { |key| adapter[key] }
     end
+    return klass if klass
+
+    raise UnsupportedDatabase, "Unsupported database type: #{adapter}"
   end
 end

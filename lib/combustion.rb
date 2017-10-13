@@ -4,6 +4,10 @@ require "rails"
 require "active_support/dependencies"
 
 module Combustion
+  module Configurations
+    #
+  end
+
   mattr_accessor :path, :schema_format, :setup_environment
 
   self.path          = "/spec/internal"
@@ -25,16 +29,17 @@ module Combustion
     Bundler.require :default, Rails.env
 
     Combustion::Application.configure_for_combustion
-
-    if modules.map(&:to_s).include? "active_record"
-      Combustion::Application.config.to_prepare do
-        Combustion::Database.setup(options)
-      end
-    end
-
+    include_database options
     Combustion::Application.initialize!
-
     include_rspec
+  end
+
+  def self.include_database(options)
+    return unless modules.map(&:to_s).include? "active_record"
+
+    Combustion::Application.config.to_prepare do
+      Combustion::Database.setup(options)
+    end
   end
 
   def self.include_rspec
@@ -62,4 +67,7 @@ module Combustion
 end
 
 require "combustion/application"
+require "combustion/configurations/action_controller"
+require "combustion/configurations/action_mailer"
+require "combustion/configurations/active_record"
 require "combustion/database"
