@@ -6,7 +6,9 @@ class Combustion::Database::Migrate
   end
 
   def call
-    if ActiveRecord::VERSION::STRING >= "3.1.0"
+    if ActiveRecord::VERSION::STRING.to_f >= 5.2
+      migration_context.migrate
+    elsif ActiveRecord::VERSION::STRING.to_f >= 3.1
       migrator.migrate paths, nil
     else
       paths.each { |path| migrator.migrate path, nil }
@@ -39,6 +41,10 @@ class Combustion::Database::Migrate
 
   def engine_paths_exist_in?(paths)
     paths.include?(engine_path.join("db/migrate").to_s)
+  end
+
+  def migration_context
+    ActiveRecord::MigrationContext.new paths
   end
 
   def migrator
