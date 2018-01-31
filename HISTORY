@@ -1,3 +1,8 @@
+0.8.0 - February 1st 2018
+* Rails 5.2.0 support.
+* Requiring digest from std-lib directly.
+* Refactoring for cleaner code.
+
 0.7.0 - June 20th 2017
 * Confirm support for MRI frozen string literals.
 * Hide migration output (Michael Grosser).
