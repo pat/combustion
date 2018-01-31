@@ -3,5 +3,6 @@
 source "http://rubygems.org"
 
 gem "rails", "~> 5.1.0"
+gem "pg", "< 1.0"
 
 gemspec :path => "../"
