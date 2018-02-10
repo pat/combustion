@@ -11,7 +11,7 @@ class Combustion::Databases::Base
     drop
     create
 
-    establish_connection(:test)
+    establish_connection Rails.env.to_sym
   end
 
   private

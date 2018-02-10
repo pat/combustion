@@ -2,7 +2,7 @@
 
 class Combustion::Databases::Firebird < Combustion::Databases::Base
   def reset
-    establish_connection :test
+    establish_connection Rails.env.to_sym
     connection.recreate_database!
   end
 end
