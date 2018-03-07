@@ -20,7 +20,7 @@ module Combustion
         to eq true
     end
 
-    it "returns test databse for model with default connection" do
+    it "returns test database for model with default connection" do
       expect(Model.connection_config[:database]).to match(/test/)
     end
 

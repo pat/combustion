@@ -12,6 +12,8 @@ class Combustion::Database::Reset
     Combustion::Databases::Firebird   => %w[ firebird ]
   }.freeze
 
+  RAILS_DEFAULT_ENVIRONMENTS = %w[ development production test ].freeze
+
   def self.call
     new.call
   end
@@ -23,7 +25,7 @@ class Combustion::Database::Reset
   end
 
   def call
-    ActiveRecord::Base.configurations.each_value do |configuration|
+    resettable_db_configs.each_value do |configuration|
       adapter = configuration["adapter"] ||
                 configuration["url"].split("://").first
 
@@ -45,5 +47,17 @@ class Combustion::Database::Reset
     return klass if klass
 
     raise UnsupportedDatabase, "Unsupported database type: #{adapter}"
+  end
+
+  # All database configs except Rails default environments
+  # that are not currently in use
+  def resettable_db_configs
+    unused_environments = RAILS_DEFAULT_ENVIRONMENTS - [Rails.env.to_s]
+    resettable_environments = ActiveRecord::Base.configurations.keys -
+                              unused_environments
+
+    ActiveRecord::Base.configurations.select do |name|
+      resettable_environments.include?(name)
+    end
   end
 end
