@@ -2,7 +2,6 @@
 
 module Combustion
   module Databases
-    #
   end
 
   class Database

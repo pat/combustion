@@ -4,17 +4,21 @@ inherit_from:
 AllCops:
   TargetRubyVersion: 2.2
 
+Bundler/OrderedGems:
+  Exclude:
+    - 'gemfiles/*'
+
 Layout/DotPosition:
   EnforcedStyle: trailing
 
 Layout/CaseIndentation:
   EnforcedStyle: end
 
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: variable
+
 Layout/IndentHeredoc:
   Enabled: false
-
-Lint/EndAlignment:
-  EnforcedStyleAlignWith: variable
 
 Metrics/BlockLength:
   Exclude:
@@ -25,6 +29,10 @@ Style/ClassAndModuleChildren:
 
 Style/Documentation:
   Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - 'gemfiles/*'
 
 Style/MultilineTernaryOperator:
   Exclude:

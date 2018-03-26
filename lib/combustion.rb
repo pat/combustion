@@ -5,7 +5,6 @@ require "active_support/dependencies"
 
 module Combustion
   module Configurations
-    #
   end
 
   mattr_accessor :path, :schema_format, :setup_environment

@@ -89,7 +89,7 @@ Please provide the root password for your mysql installation
       return
     end
 
-    $stderr.puts <<-TXT
+    warn <<-TXT
 #{error.error}
 Couldn't create database for #{config.inspect}, charset: #{charset}, collation: #{collation}
 #{charset_error}

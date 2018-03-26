@@ -3,7 +3,7 @@
 module Combustion
   describe Database do
     before(:all) do
-      Dir.chdir(File.expand_path("../dummy", __FILE__)) do
+      Dir.chdir(File.expand_path("dummy", __dir__)) do
         Combustion.initialize! :active_record
       end
     end
