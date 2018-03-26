@@ -4,5 +4,6 @@ source "http://rubygems.org"
 
 gem "rails", "~> 3.2.22.5"
 gem "mysql2", "~> 0.3.10"
+gem "pg", "< 1.0"
 
 gemspec :path => "../"

@@ -27,20 +27,24 @@ if RUBY_VERSION.to_f <= 2.3
 
   appraise "rails-4.2" do
     gem "rails", "~> 4.2.8"
+    gem "mysql2", "~> 0.4.4"
     gem "pg", "< 1.0"
   end
 end
 
 appraise "rails-5.0" do
   gem "rails", "~> 5.0.2"
+  gem "mysql2", "~> 0.4.4"
   gem "pg", "< 1.0"
 end
 
 appraise "rails-5.1" do
   gem "rails", "~> 5.1.0"
+  gem "mysql2", "~> 0.4.4"
   gem "pg", "< 1.0"
 end
 
 appraise "rails-5.2" do
   gem "rails", "~> 5.2.0.rc1"
+  gem "mysql2", "~> 0.4.4"
 end
