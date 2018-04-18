@@ -6,17 +6,16 @@ Rails.env = ENV["RAILS_ENV"] || "test"
 
 module Combustion
   class Application < Rails::Application
+    version = Rails.version.to_f
+
     # Core Settings
     config.cache_classes               = true
     config.consider_all_requests_local = true
-    config.secret_token                = Digest::SHA1.hexdigest Time.now.to_s
     config.eager_load                  = Rails.env.production?
 
-    if Rails.version.to_f >= 4.0
-      config.secret_key_base = SecureRandom.hex
-    else
-      config.whiny_nils = true
-    end
+    config.secret_key_base = SecureRandom.hex if version >= 4.0
+    config.whiny_nils      = true             if version < 4.0
+    config.secret_token = Digest::SHA1.hexdigest Time.now.to_s if version < 5.2
 
     # ActiveSupport Settings
     config.active_support.deprecation = :stderr
