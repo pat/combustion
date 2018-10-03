@@ -1,3 +1,7 @@
+1.0.0 - October 3rd 2018
+* No functional changes.
+* Added documentation about database preparation options.
+
 0.9.1 - April 25th 2018
 * Fix Rails 5.2 compatibility by not setting the deprecated secret_token configuration option.
 
