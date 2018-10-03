@@ -105,6 +105,16 @@ ActiveRecord::Schema.define do
 end
 ```
 
+#### Disabling Database Preparation
+
+If you are preparing your own database manually or through different processes, you can disable different parts of the setup process by the following flags: `:database_reset`, `:load_schema`, and `:database_migrate`. All default to true.
+
+```ruby
+Combustion.initialize! :active_record,
+  :database_reset => false,
+  :load_schema    => false
+```
+
 ### Configuring Combustion to initialise the test db from a .sql file instead of schema.rb
 
 Name the file structure.sql and configure Combustion to use it before initialising:
