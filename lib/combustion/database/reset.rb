@@ -52,12 +52,10 @@ class Combustion::Database::Reset
   # All database configs except Rails default environments
   # that are not currently in use
   def resettable_db_configs
-    unused_environments = RAILS_DEFAULT_ENVIRONMENTS - [Rails.env.to_s]
-    resettable_environments = ActiveRecord::Base.configurations.to_h.keys -
-                              unused_environments
+    all_configurations      = ActiveRecord::Base.configurations.to_h
+    unused_environments     = RAILS_DEFAULT_ENVIRONMENTS - [Rails.env.to_s]
+    resettable_environments = all_configurations.keys - unused_environments
 
-    ActiveRecord::Base.configurations.select do |name|
-      resettable_environments.include?(name)
-    end
+    all_configurations.select { |name| resettable_environments.include?(name) }
   end
 end
