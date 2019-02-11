@@ -1,5 +1,7 @@
 language: ruby
 env:
+  global:
+    - PGPORT=5432
   matrix:
     - "DB_ADAPTER=sqlite3"
     - "DB_ADAPTER=postgresql"
