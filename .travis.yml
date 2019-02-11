@@ -11,7 +11,6 @@ rvm:
   - 2.5.3
   - 2.6.1
 before_install:
-  - gem update --system
   - gem install bundler --version "~> 1.17"
 before_script:
   - bundle exec appraisal install
