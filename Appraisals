@@ -54,7 +54,9 @@ appraise "rails-5.2" do
   gem "mysql2", "~> 0.5.0"
 end
 
-appraise "rails-6.0" do
-  gem "rails", "~> 6.0.0.beta1"
-  gem "mysql2", "~> 0.5.0"
-end if RUBY_VERSION.to_f >= 2.5
+if RUBY_VERSION.to_f >= 2.5
+  appraise "rails-6.0" do
+    gem "rails", "~> 6.0.0.beta1"
+    gem "mysql2", "~> 0.5.0"
+  end
+end
