@@ -1,7 +1,6 @@
 language: ruby
+dist: xenial
 env:
-  global:
-    - PGPORT=5432
   matrix:
     - "DB_ADAPTER=sqlite3"
     - "DB_ADAPTER=postgresql"
@@ -14,14 +13,11 @@ rvm:
   - 2.6.1
 before_install:
   - gem install bundler --version "~> 1.17"
+install:
+  - bundle _1.17.3_ install --jobs=3 --retry=3
 before_script:
   - bundle exec appraisal install
-script: 'bundle exec appraisal rake'
+script: bundle exec appraisal rake
 services:
   - mysql
-addons:
-  postgresql: "10"
-  apt:
-    packages:
-    - postgresql-10
-    - postgresql-client-10
+  - postgresql
