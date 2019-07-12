@@ -44,7 +44,13 @@ class Combustion::Database::Migrate
   end
 
   def migration_context
-    ActiveRecord::MigrationContext.new paths
+    if ActiveRecord::MigrationContext.instance_method(:initialize).arity <= 1
+      ActiveRecord::MigrationContext.new paths
+    else
+      ActiveRecord::MigrationContext.new(
+        paths, ActiveRecord::Base.connection.schema_migration
+      )
+    end
   end
 
   def migrator
