@@ -39,6 +39,7 @@ module Combustion
       :group  => :all
     ) do
       next unless Combustion.setup_environment
+
       Combustion::Application.class_eval(&Combustion.setup_environment)
     end
   end
