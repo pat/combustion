@@ -4,7 +4,7 @@ class Combustion::Database::Reset
   UnsupportedDatabase = Class.new StandardError
 
   OPERATOR_PATTERNS = {
-    Combustion::Databases::MySQL => [/mysql/],
+    Combustion::Databases::MySQL      => [/mysql/],
     Combustion::Databases::PostgreSQL => [/postgres/, /postgis/],
     Combustion::Databases::SQLite     => [/sqlite/],
     Combustion::Databases::SQLServer  => [/sqlserver/],
