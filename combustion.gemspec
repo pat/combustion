@@ -10,8 +10,6 @@ Gem::Specification.new do |s|
   s.description = "Test your Rails Engines without needing a full Rails app"
   s.license     = "MIT"
 
-  s.rubyforge_project = "combustion"
-
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- exe/*`.split("\n").map do |file|
