@@ -1,3 +1,7 @@
+1.1.1 - August 3rd 2019
+* Fix for latest Rails 6.0 release candidate.
+* Test suite updates (Rails edge, sqlite3, Rubocop)
+
 1.1.0 - February 13th 2019
 * Rails 6.0 support.
 
