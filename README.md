@@ -150,7 +150,7 @@ Combustion.initialize! :all do
 end
 ```
 
-Values given through the initialize! block will be set during Rails initialization proccess, exactly before the corresponding environment file inside `spec/internals/config/enviroments` is loaded (when that file exists), overriding Combustion's defaults.
+Values given through the initialize! block will be set during Rails initialization process, exactly before the corresponding environment file inside `spec/internals/config/enviroments` is loaded (when that file exists), overriding Combustion's defaults.
 
 Parameters defined in, for instance, `spec/internals/config/environments/test.rb`, would override Combustion's defaults and also config settings passed to initialize!.
 
