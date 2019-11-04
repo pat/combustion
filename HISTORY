@@ -1,3 +1,6 @@
+1.1.2 - November 4th 2019
+* Generate an empty asset manifest file for Rails 6.
+
 1.1.1 - August 3rd 2019
 * Fix for latest Rails 6.0 release candidate.
 * Test suite updates (Rails edge, sqlite3, Rubocop)
