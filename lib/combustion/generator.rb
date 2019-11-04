@@ -23,8 +23,10 @@ module Combustion
       template "templates/database.yml", "spec/internal/config/database.yml"
       template "templates/schema.rb",    "spec/internal/db/schema.rb"
       template "templates/config.ru",    "config.ru"
-      create_file                        "spec/internal/public/favicon.ico"
-      create_file                        "spec/internal/log/.gitignore" do
+
+      create_file "spec/internal/app/assets/config/manifest.js"
+      create_file "spec/internal/public/favicon.ico"
+      create_file "spec/internal/log/.gitignore" do
         "*.log"
       end
     end
