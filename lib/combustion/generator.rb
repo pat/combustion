@@ -23,6 +23,7 @@ module Combustion
       template "templates/database.yml", "spec/internal/config/database.yml"
       template "templates/schema.rb",    "spec/internal/db/schema.rb"
       template "templates/config.ru",    "config.ru"
+      template "templates/storage.yml", "spec/internal/config/storage.yml"
 
       create_file "spec/internal/app/assets/config/manifest.js"
       create_file "spec/internal/public/favicon.ico"

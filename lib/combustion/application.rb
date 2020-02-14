@@ -29,6 +29,7 @@ module Combustion
       Combustion::Configurations::ActiveRecord.call config
       Combustion::Configurations::ActionController.call config
       Combustion::Configurations::ActionMailer.call config
+      Combustion::Configurations::ActiveStorage.call config
 
       config.assets.enabled = true if defined?(Sprockets)
     end
