@@ -12,18 +12,14 @@ module Combustion
   self.path          = "/spec/internal"
   self.schema_format = :ruby
 
-  MODULES = if Rails.version.to_f >= 3.1
-    %w[ active_record action_controller action_view action_mailer sprockets ]
-  else
-    %w[ active_record action_controller action_view action_mailer ]
-  end
+  MODULES = self.modules.keys
 
   def self.initialize!(*modules, &block)
     self.setup_environment = block if block_given?
 
     options = modules.extract_options!
-    modules = MODULES if modules == [:all]
-    modules.each { |mod| require "#{mod}/railtie" }
+    modules = self.modules.keys if modules == [:all]
+    modules.each { |mod| require self.modules[mod] }
 
     Bundler.require :default, Rails.env
 
@@ -63,10 +59,34 @@ module Combustion
 
     config.include Capybara
   end
+
+  def self.modules
+    if Rails.version.to_f >= 3.1
+      {
+        'active_model' => 'active_model/railtie'
+        'active_record' => 'active_record/railtie'
+        'active_storage' => 'active_storage/engine'
+        'action_controller' => 'action_controller/railtie'
+        'action_mailer' => 'action_mailer/railtie'
+        'action_view' => 'action_view/railtie'
+        'sprockets' => 'sprockets/railtie'
+      }
+    else
+      {
+        'active_model' => 'active_model/railtie'
+        'active_record' => 'active_record/railtie'
+        'action_controller' => 'action_controller/railtie'
+        'action_mailer' => 'action_mailer/railtie'
+        'action_view' => 'action_view/railtie'
+      }
+    end
+
+  end
 end
 
 require "combustion/application"
 require "combustion/configurations/action_controller"
 require "combustion/configurations/action_mailer"
 require "combustion/configurations/active_record"
+require "combustion/configurations/active_storage"
 require "combustion/database"
