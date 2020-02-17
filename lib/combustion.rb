@@ -12,14 +12,32 @@ module Combustion
   self.path          = "/spec/internal"
   self.schema_format = :ruby
 
-  MODULES = self.modules.keys
+  MODULES = if Rails.version.to_f >= 3.1
+    {
+      :active_model      => "active_model/railtie",
+      :active_record     => "active_record/railtie",
+      :active_storage    => "active_storage/engine",
+      :action_controller => "action_controller/railtie",
+      :action_mailer     => "action_mailer/railtie",
+      :action_view       => "action_view/railtie",
+      :sprockets         => "sprockets/railtie"
+    }
+  else
+    {
+      :active_model      => "active_model/railtie",
+      :active_record     => "active_record/railtie",
+      :action_controller => "action_controller/railtie",
+      :action_mailer     => "action_mailer/railtie",
+      :action_view       => "action_view/railtie"
+    }
+  end
 
   def self.initialize!(*modules, &block)
     self.setup_environment = block if block_given?
 
     options = modules.extract_options!
-    modules = self.modules.keys if modules == [:all]
-    modules.each { |mod| require self.modules[mod] }
+    modules = MODULES.keys if modules == [:all]
+    modules.each { |mod| require MODULES[mod] }
 
     Bundler.require :default, Rails.env
 
@@ -58,29 +76,6 @@ module Combustion
     return if defined?(Capybara::RSpecMatchers) || defined?(Capybara::DSL)
 
     config.include Capybara
-  end
-
-  def self.modules
-    if Rails.version.to_f >= 3.1
-      {
-        'active_model' => 'active_model/railtie'
-        'active_record' => 'active_record/railtie'
-        'active_storage' => 'active_storage/engine'
-        'action_controller' => 'action_controller/railtie'
-        'action_mailer' => 'action_mailer/railtie'
-        'action_view' => 'action_view/railtie'
-        'sprockets' => 'sprockets/railtie'
-      }
-    else
-      {
-        'active_model' => 'active_model/railtie'
-        'active_record' => 'active_record/railtie'
-        'action_controller' => 'action_controller/railtie'
-        'action_mailer' => 'action_mailer/railtie'
-        'action_view' => 'action_view/railtie'
-      }
-    end
-
   end
 end
 
