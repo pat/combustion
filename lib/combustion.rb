@@ -12,25 +12,20 @@ module Combustion
   self.path          = "/spec/internal"
   self.schema_format = :ruby
 
-  MODULES = if Rails.version.to_f >= 3.1
-    {
-      :active_model      => "active_model/railtie",
-      :active_record     => "active_record/railtie",
-      :active_storage    => "active_storage/engine",
-      :action_controller => "action_controller/railtie",
-      :action_mailer     => "action_mailer/railtie",
-      :action_view       => "action_view/railtie",
-      :sprockets         => "sprockets/railtie"
-    }
-  else
-    {
+  MODULES = begin
+    hash = {
       :active_model      => "active_model/railtie",
       :active_record     => "active_record/railtie",
       :action_controller => "action_controller/railtie",
       :action_mailer     => "action_mailer/railtie",
       :action_view       => "action_view/railtie"
     }
-  end
+
+    hash[:sprockets]      = "sprockets/railtie"     if Rails.version.to_f >= 3.1
+    hash[:active_storage] = "active_storage/engine" if Rails.version.to_f >= 5.2
+
+    hash
+  end.freeze
 
   def self.initialize!(*modules, &block)
     self.setup_environment = block if block_given?
