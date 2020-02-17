@@ -6,11 +6,11 @@ env:
     - "DB_ADAPTER=postgresql"
     - "DB_ADAPTER=mysql2"
 rvm:
-  - 2.2.10
   - 2.3.8
-  - 2.4.6
-  - 2.5.5
-  - 2.6.3
+  - 2.4.9
+  - 2.5.7
+  - 2.6.5
+  - 2.7.0
 before_install:
   - gem install bundler --version "~> 1.17"
 install:
