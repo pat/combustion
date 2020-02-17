@@ -17,7 +17,7 @@ Layout/CaseIndentation:
 Layout/EndAlignment:
   EnforcedStyleAlignWith: variable
 
-Layout/IndentHeredoc:
+Layout/HeredocIndentation:
   Enabled: false
 
 Metrics/BlockLength:
