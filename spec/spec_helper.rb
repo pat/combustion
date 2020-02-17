@@ -13,3 +13,7 @@ if Rails::VERSION::STRING.to_f < 4.1
 end
 
 require File.expand_path("dummy/lib/engine.rb", __dir__)
+
+Dir.chdir(File.expand_path("dummy", __dir__)) do
+  Combustion.initialize! :all
+end
