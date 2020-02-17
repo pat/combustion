@@ -6,6 +6,13 @@ Rails.env = ENV["RAILS_ENV"] || "test"
 
 module Combustion
   class Application < Rails::Application
+    CONFIGURERS = [
+      Combustion::Configurations::ActiveRecord,
+      Combustion::Configurations::ActionController,
+      Combustion::Configurations::ActionMailer,
+      Combustion::Configurations::ActiveStorage
+    ].freeze
+
     version = Rails.version.to_f
 
     # Core Settings
@@ -26,10 +33,7 @@ module Combustion
     def self.configure_for_combustion
       config.root = File.expand_path File.join(Dir.pwd, Combustion.path)
 
-      Combustion::Configurations::ActiveRecord.call config
-      Combustion::Configurations::ActionController.call config
-      Combustion::Configurations::ActionMailer.call config
-      Combustion::Configurations::ActiveStorage.call config
+      CONFIGURERS.each { |configurer| configurer.call config }
 
       config.assets.enabled = true if defined?(Sprockets)
     end

@@ -84,9 +84,9 @@ module Combustion
   end
 end
 
-require "combustion/application"
 require "combustion/configurations/action_controller"
 require "combustion/configurations/action_mailer"
 require "combustion/configurations/active_record"
 require "combustion/configurations/active_storage"
+require "combustion/application"
 require "combustion/database"
