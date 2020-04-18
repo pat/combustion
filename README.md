@@ -10,10 +10,10 @@ Get the gem into either your gemspec or your Gemfile, depending on how you manag
 
 ```ruby
 # gemspec
-gem.add_development_dependency 'combustion', '~> 1.1'
+gem.add_development_dependency 'combustion', '~> 1.2'
 
 # Gemfile
-gem 'combustion', '~> 1.1'
+gem 'combustion', '~> 1.2'
 ```
 
 In your `spec_helper.rb`, get Combustion to set itself up - which has to happen before you introduce `rspec/rails` and - if being used - `capybara/rails`. Here's an example within context:

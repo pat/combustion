@@ -1,3 +1,6 @@
+1.2.0 - April 18th 2020
+* Support ActiveStorage (Mikko Kokkonen).
+
 1.1.2 - November 4th 2019
 * Generate an empty asset manifest file for Rails 6.
 
