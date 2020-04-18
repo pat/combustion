@@ -1,9 +1,6 @@
 inherit_from:
   - https://gist.githubusercontent.com/pat/ba3b8ffb1901bfe5439b460943b6b019/raw/.rubocop.yml
 
-AllCops:
-  TargetRubyVersion: 2.3
-
 Bundler/OrderedGems:
   Exclude:
     - 'gemfiles/*'
