@@ -25,6 +25,8 @@ module Combustion
     hash[:active_job]     = "active_job/railtie"    if Rails.version.to_f >= 4.2
     hash[:action_cable]   = "action_cable/engine"   if Rails.version.to_f >= 5.0
     hash[:active_storage] = "active_storage/engine" if Rails.version.to_f >= 5.2
+    hash[:action_text]    = "action_text/engine"    if Rails.version.to_f >= 6.0
+    hash[:action_mailbox] = "action_mailbox/engine" if Rails.version.to_f >= 6.0
 
     hash
   end.freeze
