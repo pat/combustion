@@ -1,3 +1,6 @@
+1.3.0 - April 20th 2020
+* Support ActiveJob, ActionCable, ActionText, ActionMailbox.
+
 1.2.0 - April 18th 2020
 * Support ActiveStorage (Mikko Kokkonen).
 

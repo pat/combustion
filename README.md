@@ -10,7 +10,7 @@ Get the gem into either your gemspec or your Gemfile, depending on how you manag
 
 ```ruby
 # gemspec
-gem.add_development_dependency 'combustion', '~> 1.2'
+gem.add_development_dependency 'combustion', '~> 1.3'
 
 # Gemfile
 gem 'combustion', '~> 1.2'
