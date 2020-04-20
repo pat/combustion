@@ -33,7 +33,7 @@ module Combustion
 
     options = modules.extract_options!
     modules = MODULES.keys if modules == [:all]
-    modules.each { |mod| require MODULES[mod] }
+    modules.each { |mod| require MODULES.fetch(mod, "#{mod}/railtie") }
 
     Bundler.require :default, Rails.env
 
