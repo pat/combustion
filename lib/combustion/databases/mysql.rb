@@ -4,7 +4,7 @@ class Combustion::Databases::MySQL < Combustion::Databases::Base
   ACCESS_DENIED_ERROR = 10_145
 
   def reset
-    establish_connection(configuration.merge("database" => nil))
+    establish_connection(configuration.merge(:database => nil))
 
     super
   end
@@ -12,21 +12,21 @@ class Combustion::Databases::MySQL < Combustion::Databases::Base
   private
 
   def charset
-    configuration["charset"] || ENV["CHARSET"] || "utf8"
+    configuration[:charset] || ENV["CHARSET"] || "utf8"
   end
 
   def charset_error
-    return "" unless config["charset"]
+    return "" unless configuration[:charset]
 
     "(if you set the charset manually, make sure you have a matching collation)"
   end
 
   def collation
-    configuration["collation"] || ENV["COLLATION"] || "utf8_unicode_ci"
+    configuration[:collation] || ENV["COLLATION"] || "utf8_unicode_ci"
   end
 
   def create
-    connection.create_database configuration["database"], creation_options
+    connection.create_database configuration[:database], creation_options
     establish_connection configuration
   rescue error_class => error
     rescue_create_from error
@@ -34,12 +34,12 @@ class Combustion::Databases::MySQL < Combustion::Databases::Base
 
   def create_as_root(error)
     establish_connection configuration.merge(
-      "database" => nil,
-      "username" => "root",
-      "password" => request_password(error)
+      :database => nil,
+      :username => "root",
+      :password => request_password(error)
     )
 
-    connection.create_database config["database"], creation_options
+    connection.create_database configuration[:database], creation_options
     connection.execute grant_statement
 
     establish_connection configuration
@@ -50,15 +50,15 @@ class Combustion::Databases::MySQL < Combustion::Databases::Base
   end
 
   def drop
-    connection.drop_database configuration["database"]
+    connection.drop_database configuration[:database]
   end
 
   def error_class
-    if configuration["adapter"][/jdbc/]
+    if configuration[:adapter][/jdbc/]
       # FIXME: After Jdbcmysql gives this class
       require "active_record/railties/jdbcmysql_error"
       ArJdbcMySQL::Error
-    elsif config["adapter"][/mysql2/] && defined?(Mysql2)
+    elsif configuration[:adapter][/mysql2/] && defined?(Mysql2)
       Mysql2::Error
     else
       Mysql::Error
@@ -68,8 +68,8 @@ class Combustion::Databases::MySQL < Combustion::Databases::Base
   def grant_statement
     <<-SQL
 GRANT ALL PRIVILEGES ON #{configuration["database"]}.*
-TO '#{configuration["username"]}'@'localhost'
-IDENTIFIED BY '#{configuration["password"]}' WITH GRANT OPTION;
+TO '#{configuration[:username]}'@'localhost'
+IDENTIFIED BY '#{configuration[:password]}' WITH GRANT OPTION;
     SQL
   end
 
@@ -91,7 +91,7 @@ Please provide the root password for your mysql installation
 
     warn <<-TXT
 #{error.error}
-Couldn't create database for #{config.inspect}, charset: #{charset}, collation: #{collation}
+Couldn't create database for #{configuration.inspect}, charset: #{charset}, collation: #{collation}
 #{charset_error}
     TXT
   end
