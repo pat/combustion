@@ -25,9 +25,9 @@ class Combustion::Database::Reset
   end
 
   def call
-    resettable_db_configs.each_value do |configuration|
-      adapter = configuration["adapter"] ||
-                configuration["url"].split("://").first
+    resettable_db_configs.each do |configuration|
+      adapter = configuration[:adapter] ||
+                configuration[:url].split("://").first
 
       operator_class(adapter).new(configuration).reset
     end
@@ -52,10 +52,28 @@ class Combustion::Database::Reset
   # All database configs except Rails default environments
   # that are not currently in use
   def resettable_db_configs
+    if ActiveRecord::VERSION::STRING.to_f > 6.0
+      return resettable_db_configs_for_6_1
+    end
+
     all_configurations      = ActiveRecord::Base.configurations.to_h
     unused_environments     = RAILS_DEFAULT_ENVIRONMENTS - [Rails.env.to_s]
     resettable_environments = all_configurations.keys - unused_environments
 
-    all_configurations.select { |name| resettable_environments.include?(name) }
+    all_configurations.
+      select { |name| resettable_environments.include?(name) }.
+      values.
+      collect(&:with_indifferent_access)
+  end
+
+  def resettable_db_configs_for_6_1
+    all_configurations      = ActiveRecord::Base.configurations.configurations
+    unused_environments     = RAILS_DEFAULT_ENVIRONMENTS - [Rails.env.to_s]
+    resettable_environments = all_configurations.collect(&:env_name).uniq -
+                              unused_environments
+
+    all_configurations.
+      select { |config| resettable_environments.include?(config.env_name) }.
+      collect(&:configuration_hash)
   end
 end
