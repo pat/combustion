@@ -20,6 +20,7 @@ Layout/HeredocIndentation:
 Metrics/BlockLength:
   Exclude:
     - 'combustion.gemspec'
+    - 'spec/**/*_spec.rb'
 
 Style/ClassAndModuleChildren:
   Enabled: false

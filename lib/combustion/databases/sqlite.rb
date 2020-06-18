@@ -8,7 +8,7 @@ class Combustion::Databases::SQLite < Combustion::Databases::Base
 
   def create
     if exists?
-      warn "#{config["database"]} already exists"
+      warn "#{config[:database]} already exists"
       return
     end
 
@@ -32,6 +32,6 @@ class Combustion::Databases::SQLite < Combustion::Databases::Base
   end
 
   def path
-    @path ||= Pathname.new configuration["database"]
+    @path ||= Pathname.new configuration[:database]
   end
 end
