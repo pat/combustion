@@ -1,12 +1,12 @@
 inherit_from:
   - https://gist.githubusercontent.com/pat/ba3b8ffb1901bfe5439b460943b6b019/raw/.rubocop.yml
 
-require:
-  - rubocop-packaging
-
 Bundler/OrderedGems:
   Exclude:
     - 'gemfiles/*'
+
+Gemspec/RequiredRubyVersion:
+  Enabled: false
 
 Layout/DotPosition:
   EnforcedStyle: trailing
