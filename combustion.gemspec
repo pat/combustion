@@ -10,11 +10,9 @@ Gem::Specification.new do |s|
   s.description = "Test your Rails Engines without needing a full Rails app"
   s.license     = "MIT"
 
-  s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables   = `git ls-files -- exe/*`.split("\n").map do |file|
-    File.basename(file)
-  end
+  s.files         = Dir["{exe,lib,templates}/**/*"] + %w[LICENCE README.md]
+  s.test_files    = Dir["spec/**/*"] + %w[.rspec Appraisals Gemfile Rakefile]
+  s.executables   = ["combust"]
   s.bindir        = "exe"
   s.require_paths = ["lib"]
 
