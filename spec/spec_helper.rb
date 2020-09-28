@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "bundler/setup"
 require "combustion"
 
 if Rails::VERSION::STRING.to_f < 4.1

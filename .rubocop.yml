@@ -5,6 +5,9 @@ Bundler/OrderedGems:
   Exclude:
     - 'gemfiles/*'
 
+Gemspec/RequiredRubyVersion:
+  Enabled: false
+
 Layout/DotPosition:
   EnforcedStyle: trailing
 
