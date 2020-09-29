@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Combustion::Database::Reset
+  # https://github.com/ruby/psych/pull/358/files#diff-fcdbfb11714f576f58ba9f866052bc79R322
+  RUBY_VERSION_WITH_NEW_SAFE_LOAD_METHOD_SIGNATURE = "2.6.0"
+
   UnsupportedDatabase = Class.new StandardError
 
   OPERATOR_PATTERNS = {
@@ -19,9 +22,16 @@ class Combustion::Database::Reset
   end
 
   def initialize
-    ActiveRecord::Base.configurations = YAML.safe_load(
-      ERB.new(database_yaml).result, [], [], true
-    )
+    # TODO: remove when no longer support 2.5.8
+    if RUBY_VERSION >= RUBY_VERSION_WITH_NEW_SAFE_LOAD_METHOD_SIGNATURE
+      ActiveRecord::Base.configurations = YAML.safe_load(
+        ERB.new(database_yaml).result, :aliases => true
+      )
+    else
+      ActiveRecord::Base.configurations = YAML.safe_load(
+        ERB.new(database_yaml).result, [], [], true
+      )
+    end
   end
 
   def call
