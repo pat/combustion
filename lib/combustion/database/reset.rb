@@ -2,7 +2,7 @@
 
 class Combustion::Database::Reset
   # https://github.com/ruby/psych/pull/358/files#diff-fcdbfb11714f576f58ba9f866052bc79R322
-  RUBY_VERSION_WITH_NEW_SAFE_LOAD_METHOD_SIGNATURE = "2.6.0".freeze
+  RUBY_VERSION_WITH_NEW_SAFE_LOAD_METHOD_SIGNATURE = "2.6.0"
 
   UnsupportedDatabase = Class.new StandardError
 
