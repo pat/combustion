@@ -11,7 +11,15 @@ Gem::Specification.new do |s|
   s.license     = "MIT"
 
   s.files         = Dir["{exe,lib,templates}/**/*"] + %w[LICENCE README.md]
-  s.test_files    = Dir["spec/**/*"] + %w[.rspec Appraisals Gemfile Rakefile]
+  s.test_files    =
+    Dir["spec/**/*"] +
+    %w[.rspec Appraisals Gemfile Rakefile] -
+    %w[
+      spec/dummy/spec/internal/log/development.log
+      spec/dummy/spec/internal/log/test.log
+      spec/dummy/spec/internal/test
+      spec/dummy/spec/internal/test_another
+    ]
   s.executables   = ["combust"]
   s.bindir        = "exe"
   s.require_paths = ["lib"]
