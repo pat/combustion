@@ -1,3 +1,9 @@
+1.3.1 - October 1st 2020
+* Support Rails 6.1's likely database configuration structures.
+* Update documentation to reflect latest gem version (Josh Buker).
+* Remove git dependency in gemspec (Utkarsh Gupta).
+* Use keyword arguments when possible for YAML loading (Bishwa Hang Rai).
+
 1.3.0 - April 20th 2020
 * Support ActiveJob, ActionCable, ActionText, ActionMailbox.
 
