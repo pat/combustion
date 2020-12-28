@@ -4,7 +4,11 @@ source "http://rubygems.org"
 
 gemspec
 
-gem "sqlite3", "~> 1.3.13"
+if RUBY_VERSION.to_f < 3.0
+  gem "sqlite3", "~> 1.3.13"
+else
+  gem "sqlite3", "~> 1.4"
+end
 
 if RUBY_VERSION.to_f < 2.3
   gem "i18n",     "< 1.6"

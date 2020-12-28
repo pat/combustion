@@ -3,13 +3,13 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-18.04
 
     strategy:
       fail-fast: false
       matrix:
-        ruby: [ '2.4', '2.5', '2.6', '2.7' ]
+        ruby: [ '2.4', '2.5', '2.6', '2.7', '3.0' ]
         bundler: [ '1.17.3', '2.1.4' ]
         database: [ 'mysql2', 'postgresql', 'sqlite3' ]
         exclude:
@@ -20,6 +20,8 @@ jobs:
           - ruby: '2.6'
             bundler: '2.1.4'
           - ruby: '2.7'
+            bundler: '1.17.3'
+          - ruby: '3.0'
             bundler: '1.17.3'
 
     services:
@@ -61,8 +63,6 @@ jobs:
           bundle _${{ matrix.bundler }}_ config set path $PWD/$BUNDLE_PATH
           bundle _${{ matrix.bundler }}_ install --jobs=4 --retry=3
           bundle _${{ matrix.bundler }}_ update
-      - name: Rubocop
-        run: bundle exec rubocop
       - name: Set up Appraisal
         run: bundle exec appraisal update
       - name: Test
@@ -73,3 +73,21 @@ jobs:
           DB_PASSWORD: combustion
           DB_HOST: 127.0.0.1
         run: bundle exec appraisal rspec
+
+  rubocop:
+    runs-on: ubuntu-18.04
+
+    strategy:
+      fail-fast: false
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Set up ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+          bundler: 2.1.4
+          bundler-cache: true
+      - name: Rubocop
+        run: bundle exec rubocop
