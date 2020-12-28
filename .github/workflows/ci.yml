@@ -1,0 +1,75 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby: [ '2.4', '2.5', '2.6', '2.7' ]
+        bundler: [ '1.17.3', '2.1.4' ]
+        database: [ 'mysql2', 'postgresql', 'sqlite3' ]
+        exclude:
+          - ruby: '2.4'
+            bundler: '2.1.4'
+          - ruby: '2.5'
+            bundler: '2.1.4'
+          - ruby: '2.6'
+            bundler: '2.1.4'
+          - ruby: '2.7'
+            bundler: '1.17.3'
+
+    services:
+      postgres:
+        image: postgres:10
+        env:
+          POSTGRES_USER: root
+          POSTGRES_PASSWORD: combustion
+          POSTGRES_DB: test
+        ports: ['5432:5432']
+        # needed because the postgres container does not provide a healthcheck
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: combustion
+          MYSQL_DATABASE: test
+        ports: ['3306:3306']
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Set up ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler: ${{ matrix.bundler }}
+          bundler-cache: true
+
+      - name: Set up Bundler
+        run: |
+          export BUNDLER_VERSION=${{ matrix.bundler }}
+          export BUNDLE_PATH=$PWD/vendor/bundle
+
+          gem update --system
+
+          bundle _${{ matrix.bundler }}_ config set path $PWD/$BUNDLE_PATH
+          bundle _${{ matrix.bundler }}_ install --jobs=4 --retry=3
+          bundle _${{ matrix.bundler }}_ update
+      - name: Rubocop
+        run: bundle exec rubocop
+      - name: Set up Appraisal
+        run: bundle exec appraisal update
+      - name: Test
+        env:
+          CI: "true"
+          DB_ADAPTER: ${{ matrix.database }}
+          DB_USERNAME: root
+          DB_PASSWORD: combustion
+          DB_HOST: 127.0.0.1
+        run: bundle exec appraisal rspec

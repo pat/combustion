@@ -9,6 +9,10 @@ test: &defaults
   username: <%= ENV["DB_USERNAME"] %>
   <% end %>
 
+  <% if ENV["DB_PASSWORD"] %>
+  password: <%= ENV["DB_PASSWORD"] %>
+  <% end %>
+
 
 test_another:
   <<: *defaults
