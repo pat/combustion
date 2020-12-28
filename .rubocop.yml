@@ -1,9 +1,10 @@
 inherit_from:
   - https://gist.githubusercontent.com/pat/ba3b8ffb1901bfe5439b460943b6b019/raw/.rubocop.yml
 
-Bundler/OrderedGems:
+AllCops:
   Exclude:
     - 'gemfiles/*'
+    - 'vendor/**/*'
 
 Gemspec/RequiredRubyVersion:
   Enabled: false
@@ -30,10 +31,6 @@ Style/ClassAndModuleChildren:
 
 Style/Documentation:
   Enabled: false
-
-Style/FrozenStringLiteralComment:
-  Exclude:
-    - 'gemfiles/*'
 
 Style/MultilineTernaryOperator:
   Exclude:
