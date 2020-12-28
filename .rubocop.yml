@@ -6,6 +6,9 @@ AllCops:
     - 'gemfiles/*'
     - 'vendor/**/*'
 
+Bundler/DuplicatedGem:
+  Enabled: false
+
 Gemspec/RequiredRubyVersion:
   Enabled: false
 
