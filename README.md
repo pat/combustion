@@ -208,4 +208,4 @@ The tests are extremely minimal, and patches to extend the suite are especially 
 
 ## Credits
 
-Copyright (c) 2011-2017, Combustion is developed and maintained by Pat Allan, and is released under the open MIT Licence. Many thanks to HyperTiny for encouraging its development, and [all who have contributed patches](https://github.com/pat/combustion/contributors).
+Copyright (c) 2011-2021, Combustion is developed and maintained by Pat Allan, and is released under the open MIT Licence. Many thanks to HyperTiny for encouraging its development, and [all who have contributed patches](https://github.com/pat/combustion/contributors).

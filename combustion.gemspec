@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name        = "combustion"
-  s.version     = "1.3.1"
+  s.version     = "1.3.2"
   s.authors     = ["Pat Allan"]
   s.email       = ["pat@freelancing-gods.com"]
   s.homepage    = "https://github.com/pat/combustion"
