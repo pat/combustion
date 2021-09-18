@@ -2,6 +2,10 @@
 
 class Combustion::Configurations::ActiveRecord
   def self.call(config)
+    if ActiveRecord::VERSION::MAJOR >= 7
+      config.active_record.legacy_connection_handling = false
+    end
+
     return unless defined?(ActiveRecord::Railtie)
     return unless ::ActiveRecord.constants.include?(:MassAssignmentSecurity)
 
