@@ -37,6 +37,8 @@ RSpec.configure do |config|
 end
 ```
 
+Please note that using `:all` as an argument for `Combustion.initialize!` will load all key parts of Rails that are considered essential for that version. For example: ActiveJob is only loaded for Rails 4.2 onwards, and Sprockets is only loaded for Rails 3.1-6.1 (as it is no longer part of the default set in 7.0).
+
 You'll also want to run the generator that creates a minimal set of files expected by Rails - run this in the directory of your engine:
 
 ```shell

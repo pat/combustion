@@ -12,30 +12,39 @@ module Combustion
   self.path          = "/spec/internal"
   self.schema_format = :ruby
 
-  MODULES = begin
-    hash = {
-      :active_model      => "active_model/railtie",
-      :active_record     => "active_record/railtie",
-      :action_controller => "action_controller/railtie",
-      :action_mailer     => "action_mailer/railtie",
-      :action_view       => "action_view/railtie"
-    }
+  MODULES = {
+    :active_model      => "active_model/railtie",
+    :active_record     => "active_record/railtie",
+    :action_controller => "action_controller/railtie",
+    :action_mailer     => "action_mailer/railtie",
+    :action_view       => "action_view/railtie",
+    :sprockets         => "sprockets/railtie",
+    :active_job        => "active_job/railtie",
+    :action_cable      => "action_cable/engine",
+    :active_storage    => "active_storage/engine",
+    :action_text       => "action_text/engine",
+    :action_mailbox    => "action_mailbox/engine"
+  }.freeze
 
-    hash[:sprockets]      = "sprockets/railtie"     if Rails.version.to_f >= 3.1
-    hash[:active_job]     = "active_job/railtie"    if Rails.version.to_f >= 4.2
-    hash[:action_cable]   = "action_cable/engine"   if Rails.version.to_f >= 5.0
-    hash[:active_storage] = "active_storage/engine" if Rails.version.to_f >= 5.2
-    hash[:action_text]    = "action_text/engine"    if Rails.version.to_f >= 6.0
-    hash[:action_mailbox] = "action_mailbox/engine" if Rails.version.to_f >= 6.0
+  AVAILABLE_MODULES = begin
+    keys = MODULES.keys
+    version = Rails.version.to_f
 
-    hash
+    keys.delete(:sprockets) unless (3.1..6.1).include?(version)
+    keys.delete(:active_job) unless version >= 4.2
+    keys.delete(:active_cable) unless version >= 5.0
+    keys.delete(:active_storage) unless version >= 5.2
+    keys.delete(:action_text) unless version >= 6.0
+    keys.delete(:action_mailbox) unless version >= 6.0
+
+    keys
   end.freeze
 
   def self.initialize!(*modules, &block)
     self.setup_environment = block if block_given?
 
     options = modules.extract_options!
-    modules = MODULES.keys if modules == [:all]
+    modules = AVAILABLE_MODULES if modules == [:all]
     modules.each { |mod| require MODULES.fetch(mod, "#{mod}/railtie") }
 
     Bundler.require :default, Rails.env
