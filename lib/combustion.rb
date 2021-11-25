@@ -32,7 +32,7 @@ module Combustion
 
     keys.delete(:sprockets) unless (3.1..6.1).include?(version)
     keys.delete(:active_job) unless version >= 4.2
-    keys.delete(:active_cable) unless version >= 5.0
+    keys.delete(:action_cable) unless version >= 5.0
     keys.delete(:active_storage) unless version >= 5.2
     keys.delete(:action_text) unless version >= 6.0
     keys.delete(:action_mailbox) unless version >= 6.0
