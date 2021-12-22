@@ -72,7 +72,7 @@ end
 
 if RUBY_VERSION.to_f >= 2.7
   appraise "rails-7.0" do
-    gem "rails", "~> 7.0.0.alpha2"
+    gem "rails", "~> 7.0.0"
     gem "mysql2", "~> 0.5.0"
     gem "sqlite3", "~> 1.4"
   end
