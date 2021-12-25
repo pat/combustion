@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ruby: [ '2.4', '2.5', '2.6', '2.7', '3.0' ]
+        ruby: [ '2.4', '2.5', '2.6', '2.7', '3.0', '3.1' ]
         bundler: [ '1.17.3', '2.1.4' ]
         database: [ 'mysql2', 'postgresql', 'sqlite3' ]
         exclude:
@@ -22,6 +22,8 @@ jobs:
           - ruby: '2.7'
             bundler: '1.17.3'
           - ruby: '3.0'
+            bundler: '1.17.3'
+          - ruby: '3.1'
             bundler: '1.17.3'
 
     services:
