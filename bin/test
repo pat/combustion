@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -o allexport
+source .overmind.env
+set +o allexport
+
+DB_ADAPTER=postgresql DB_HOST=127.0.0.1 DB_PORT=${POSTGRES_PORT} bundle exec rspec
+DB_ADAPTER=mysql2 DB_USERNAME=${MYSQL_USERNAME} DB_PASSWORD=${MYSQL_PASSWORD} DB_HOST=127.0.0.1 DB_PORT=${MYSQL_PORT} bundle exec rspec
+DB_ADAPTER=sqlite3 bundle exec rspec

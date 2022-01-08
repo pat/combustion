@@ -1,5 +1,8 @@
 *.gem
 .bundle
+.overmind.env
+.tool-versions
+data/*
 Gemfile.lock
 gemfiles/*.lock
 gemfiles/*.gemfile
@@ -8,5 +11,5 @@ pkg/*
 .ruby-version
 .rvmrc
 spec/dummy/spec/internal/db/*.sqlite
-spec/dummy/spec/internal/test
+spec/dummy/spec/internal/combustion
 spec/dummy/spec/internal/test_another
