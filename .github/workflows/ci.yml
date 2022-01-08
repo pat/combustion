@@ -28,7 +28,7 @@ jobs:
 
     services:
       postgres:
-        image: postgres:10
+        image: postgres:13.5
         env:
           POSTGRES_USER: root
           POSTGRES_PASSWORD: combustion
