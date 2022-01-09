@@ -56,13 +56,15 @@ if RUBY_VERSION.to_f < 3.0
   end
 end
 
-if RUBY_VERSION.to_f >= 2.5
+if RUBY_VERSION.to_f >= 2.5 && RUBY_VERSION.to_f < 3.1
   appraise "rails-6.0" do
     gem "rails", "~> 6.0.0"
     gem "mysql2", "~> 0.5.0"
     gem "sqlite3", "~> 1.4"
   end
+end
 
+if RUBY_VERSION.to_f >= 2.5
   appraise "rails-6.1" do
     gem "rails", "~> 6.1.0"
     gem "mysql2", "~> 0.5.0"
