@@ -158,7 +158,7 @@ Parameters defined in, for instance, `spec/internals/config/environments/test.rb
 
 ### Using other Rails-focused libraries
 
-Be aware that other gems may require parts of Rails when they're loaded, and this could cause some issues with Combustion's own setup. You may need to manage the loading yourself by setting `:require` to false in your Gemfile for the gem in question, and then requiring it manually in your spec_helper. View [issue #33](https://github.com/pat/combustion/issues/33) for an example with FactoryGirl.
+Be aware that other gems may require parts of Rails when they're loaded, and this could cause some issues with Combustion's own setup. You may need to manage the loading yourself by setting `:require` to false in your Gemfile for the gem in question, and then requiring it manually in your spec_helper. View [issue #33](https://github.com/pat/combustion/issues/33) for an example with FactoryBot.
 
 ### Environment and Logging
 
