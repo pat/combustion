@@ -4,7 +4,10 @@ class Combustion::Configurations::ActiveRecord
   def self.call(config)
     return unless defined?(ActiveRecord::Railtie)
 
-    if ActiveRecord::VERSION::MAJOR >= 7
+    ar_release_version = Gem::Version.new(ActiveRecord::VERSION::String).release
+    if ar_release_version >= Gem::Version.new("7.0") &&
+       ar_release_version < Gem::Version.new("7.1")
+       config.active_record.respond_to?(:legacy_connection_handling=)
       config.active_record.legacy_connection_handling = false
     end
 
