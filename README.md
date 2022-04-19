@@ -187,7 +187,7 @@ end
 
 ## Compatibility
 
-The current test matrix covers MRI 2.2 to 2.6, and Rails 3.1 to 6.0. It will possibly work on older versions and other Ruby implementations as well.
+The current test matrix covers MRI 2.4 to 3.1, and Rails 3.1 to 7.0. It will possibly work on older versions and other Ruby implementations as well.
 
 You can also use Combustion with multiple versions of Rails to test compatibility across them. [Appraisal](https://github.com/thoughtbot/appraisal) is a gem that can help with this, and a good starting reference is the [Thinking Sphinx](https://github.com/pat/thinking-sphinx) test suite, which runs against [multiple versions](https://github.com/pat/thinking-sphinx/blob/master/Appraisals) of Rails.
 
