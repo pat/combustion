@@ -62,7 +62,7 @@ class Combustion::Database::Reset
   # All database configs except Rails default environments
   # that are not currently in use
   def resettable_db_configs
-    if ActiveRecord::VERSION::STRING.to_f > 6.0
+    if Combustion::VersionGate.call("activerecord", ">= 6.1")
       return resettable_db_configs_for_6_1
     end
 

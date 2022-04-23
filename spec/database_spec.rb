@@ -14,7 +14,7 @@ RSpec.describe Combustion::Database do
   end
 
   it "returns test database for model with default connection" do
-    if ActiveRecord::VERSION::STRING.to_f > 6.0
+    if Combustion::VersionGate.call("activerecord", ">= 6.1")
       expect(Model.connection_db_config.database).to match(/combustion/)
     else
       expect(Model.connection_config[:database]).to match(/combustion/)
@@ -22,7 +22,7 @@ RSpec.describe Combustion::Database do
   end
 
   it "returns test_another for model with connection to second database" do
-    if ActiveRecord::VERSION::STRING.to_f > 6.0
+    if Combustion::VersionGate.call("activerecord", ">= 6.1")
       expect(ModelInAnotherDb.connection_db_config.database).
         to match(/test_another/)
     else

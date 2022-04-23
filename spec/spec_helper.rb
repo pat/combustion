@@ -2,7 +2,7 @@
 
 require "combustion"
 
-if Rails::VERSION::STRING.to_f < 4.1
+if Combustion::VersionGate.call("rails", "< 4.1")
   require "active_record"
   require "active_record/connection_adapters/mysql2_adapter"
 
