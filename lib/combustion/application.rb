@@ -13,16 +13,18 @@ module Combustion
       Combustion::Configurations::ActiveStorage
     ].freeze
 
-    version = Rails.version.to_f
+    rails_gate = VersionGate.new("rails")
 
     # Core Settings
     config.cache_classes               = true
     config.consider_all_requests_local = true
     config.eager_load                  = Rails.env.production?
 
-    config.secret_key_base = SecureRandom.hex if version >= 4.0
-    config.whiny_nils      = true             if version < 4.0
-    config.secret_token = Digest::SHA1.hexdigest Time.now.to_s if version < 5.2
+    config.secret_key_base = SecureRandom.hex if rails_gate.call(">= 4.0")
+    config.whiny_nils      = true             if rails_gate.call("< 4")
+    if rails_gate.call("< 5.2")
+      config.secret_token = Digest::SHA1.hexdigest Time.now.to_s
+    end
 
     # ActiveSupport Settings
     config.active_support.deprecation = :stderr

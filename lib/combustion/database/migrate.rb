@@ -6,9 +6,11 @@ class Combustion::Database::Migrate
   end
 
   def call
-    if ActiveRecord::VERSION::STRING.to_f >= 5.2
+    ar_gate = Combustion::VersionGate.new("activerecord")
+
+    if ar_gate.call(">= 5.2")
       migration_context.migrate
-    elsif ActiveRecord::VERSION::STRING.to_f >= 3.1
+    elsif ar_gate.call(">= 3.1")
       migrator.migrate paths, nil
     else
       paths.each { |path| migrator.migrate path, nil }
