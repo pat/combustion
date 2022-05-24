@@ -4,7 +4,7 @@ class Combustion::Configurations::ActiveRecord
   def self.call(config)
     return unless defined?(ActiveRecord::Railtie)
 
-    if Combustion::VersionGate.call("activerecord", "~> 7.0.0")
+    if config.active_record.respond_to?(:legacy_connection_handling)
       config.active_record.legacy_connection_handling = false
     end
 
