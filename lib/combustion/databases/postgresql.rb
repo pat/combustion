@@ -2,7 +2,12 @@
 
 class Combustion::Databases::PostgreSQL < Combustion::Databases::Base
   def reset
-    base.clear_active_connections!
+    if Combustion::VersionGate.call("activerecord", ">= 7.1.0.alpha")
+      base.connection_handler.clear_active_connections!
+    else
+      base.clear_active_connections!
+    end
+
     establish_connection(postgres_configuration)
 
     super
