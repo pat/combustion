@@ -25,6 +25,9 @@ module Combustion
     if rails_gate.call("< 5.2")
       config.secret_token = Digest::SHA1.hexdigest Time.now.to_s
     end
+    if rails_gate.call("~> 7.1.0.alpha")
+      config.active_support.cache_format_version = 7.1
+    end
 
     # ActiveSupport Settings
     config.active_support.deprecation = :stderr
