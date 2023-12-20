@@ -30,7 +30,7 @@ module Combustion
 
   AVAILABLE_MODULES = begin
     keys = MODULES.keys
-    rails_gate = VersionGate.new("rails")
+    rails_gate = VersionGate.new("railties")
 
     keys.delete(:sprockets) unless rails_gate.call(">= 3.1", "< 7.0")
     keys.delete(:active_job) unless rails_gate.call(">= 4.2")

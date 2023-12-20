@@ -13,7 +13,7 @@ module Combustion
       Combustion::Configurations::ActiveStorage
     ].freeze
 
-    rails_gate = VersionGate.new("rails")
+    rails_gate = VersionGate.new("railties")
 
     # Core Settings
     config.cache_classes               = true
