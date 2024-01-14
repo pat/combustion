@@ -42,6 +42,14 @@ if RUBY_VERSION.to_f >= 2.7
     gem "sqlite3", "~> 1.4"
   end
 
+  appraise "rails-7.1" do
+    gem "rails", "~> 7.1.2"
+    gem "mysql2", "~> 0.5.0"
+    gem "sqlite3", "~> 1.4"
+  end
+end
+
+if RUBY_VERSION.to_f >= 3.1
   appraise "rails-edge" do
     gem "rails", :git => "https://github.com/rails/rails.git", :branch => "main"
     gem "mysql2", "~> 0.5.0"
