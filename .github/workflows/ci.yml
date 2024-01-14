@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ruby: [ '2.6', '2.7', '3.0', '3.1', '3.2' ]
+        ruby: [ '2.6', '2.7', '3.0', '3.1', '3.2', '3.3' ]
         bundler: [ '1.17.3', '2.3.12' ]
         database: [ 'mysql2', 'postgresql', 'sqlite3' ]
         exclude:
@@ -22,6 +22,8 @@ jobs:
           - ruby: '3.1'
             bundler: '1.17.3'
           - ruby: '3.2'
+            bundler: '1.17.3'
+          - ruby: '3.3'
             bundler: '1.17.3'
 
     services:
@@ -57,8 +59,6 @@ jobs:
         run: |
           export BUNDLER_VERSION=${{ matrix.bundler }}
           export BUNDLE_PATH=$PWD/vendor/bundle
-
-          gem update --system
 
           bundle _${{ matrix.bundler }}_ config set path $PWD/$BUNDLE_PATH
           bundle _${{ matrix.bundler }}_ install --jobs=4 --retry=3
