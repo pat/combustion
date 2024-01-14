@@ -58,8 +58,6 @@ jobs:
           export BUNDLER_VERSION=${{ matrix.bundler }}
           export BUNDLE_PATH=$PWD/vendor/bundle
 
-          gem update --system
-
           bundle _${{ matrix.bundler }}_ config set path $PWD/$BUNDLE_PATH
           bundle _${{ matrix.bundler }}_ install --jobs=4 --retry=3
           bundle _${{ matrix.bundler }}_ update
