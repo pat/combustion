@@ -11,7 +11,7 @@ jobs:
       matrix:
         ruby: [ '2.6', '2.7', '3.0', '3.1', '3.2', '3.3' ]
         bundler: [ '1.17.3', '2.3.12' ]
-        database: [ 'mysql2', 'postgresql', 'sqlite3' ]
+        database: [ 'mysql2', 'postgresql', 'sqlite3', 'trilogy' ]
         exclude:
           - ruby: '2.6'
             bundler: '2.3.12'
@@ -25,6 +25,10 @@ jobs:
             bundler: '1.17.3'
           - ruby: '3.3'
             bundler: '1.17.3'
+          - ruby: '2.6'
+            database: 'trilogy'
+          - ruby: '2.7'
+            database: 'trilogy'
 
     services:
       postgres:

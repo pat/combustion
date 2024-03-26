@@ -60,6 +60,8 @@ class Combustion::Databases::MySQL < Combustion::Databases::Base
       ArJdbcMySQL::Error
     elsif configuration[:adapter][/mysql2/] && defined?(Mysql2)
       Mysql2::Error
+    elsif configuration[:adapter][/trilogy/] && defined?(Trilogy)
+      Trilogy::Error
     else
       Mysql::Error
     end
