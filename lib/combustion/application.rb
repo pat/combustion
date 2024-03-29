@@ -15,6 +15,10 @@ module Combustion
 
     rails_gate = VersionGate.new("railties")
 
+    if rails_gate.call(">= 7.2.0.alpha")
+      config.load_defaults Rails::VERSION::STRING.to_f
+    end
+
     # Core Settings
     config.cache_classes               = true
     config.consider_all_requests_local = true
