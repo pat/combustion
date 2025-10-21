@@ -36,6 +36,7 @@ if RUBY_VERSION.to_f >= 2.5
     gem "sqlite3", "~> 1.4", "< 1.6.0"
     gem "activerecord-trilogy-adapter", "~> 3.1"
     gem "concurrent-ruby", "< 1.3.5"
+    gem "mutex_m", "~> 0.3.0" if RUBY_VERSION.to_f >= 3.4
   end
 end
 
@@ -46,6 +47,7 @@ if RUBY_VERSION.to_f >= 2.7
     gem "sqlite3", "~> 1.4"
     gem "activerecord-trilogy-adapter", "~> 3.1"
     gem "concurrent-ruby", "< 1.3.5"
+    gem "mutex_m", "~> 0.3.0" if RUBY_VERSION.to_f >= 3.4
   end
 
   appraise "rails-7.1" do
