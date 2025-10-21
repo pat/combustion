@@ -25,6 +25,7 @@ if RUBY_VERSION.to_f >= 2.5 && RUBY_VERSION.to_f < 3.1
     gem "mysql2", "~> 0.5.0"
     gem "sqlite3", "~> 1.4", "< 1.5.0"
     gem "activerecord-trilogy-adapter", "~> 3.1"
+    gem "concurrent-ruby", "< 1.3.5"
   end
 end
 
@@ -34,6 +35,7 @@ if RUBY_VERSION.to_f >= 2.5
     gem "mysql2", "~> 0.5.0"
     gem "sqlite3", "~> 1.4", "< 1.6.0"
     gem "activerecord-trilogy-adapter", "~> 3.1"
+    gem "concurrent-ruby", "< 1.3.5"
   end
 end
 
@@ -43,6 +45,7 @@ if RUBY_VERSION.to_f >= 2.7
     gem "mysql2", "~> 0.5.0"
     gem "sqlite3", "~> 1.4"
     gem "activerecord-trilogy-adapter", "~> 3.1"
+    gem "concurrent-ruby", "< 1.3.5"
   end
 
   appraise "rails-7.1" do
