@@ -67,7 +67,7 @@ if RUBY_VERSION.to_f >= 3.2
   end
 
   appraise "rails-8.1" do
-    gem "rails", "~> 8.1.0.rc1"
+    gem "rails", "~> 8.1.1"
     gem "mysql2", "~> 0.5.0"
     gem "sqlite3", "~> 2.1"
     gem "trilogy", "~> 2.9"
