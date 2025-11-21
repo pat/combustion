@@ -1,3 +1,6 @@
+Unreleased
+* Add official support for Ruby 3.4, and Rails 8.0-8.1 (Santiago Rodriguez)
+
 1.5.0 - July 7th 2024
 * Add support for Trilogy database adaptor (Andrew Kane).
 * Use load_defaults for Rails 7.2+ configuration support (Andrew Kane).
