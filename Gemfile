@@ -13,5 +13,7 @@ end
 gem "rubocop",           "~> 0.92"
 gem "rubocop-packaging", "~> 0.5"
 
-# Required for testing Rails 6.1 on MRI 3.1+
+# Gems that are no longer part of stdlib:
 gem "net-smtp" if RUBY_VERSION.to_f > 3.0
+gem "ostruct" if RUBY_VERSION.to_f > 3.4
+gem "stringio" if RUBY_VERSION.to_f > 3.1

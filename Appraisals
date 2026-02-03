@@ -29,7 +29,7 @@ if RUBY_VERSION.to_f >= 2.5 && RUBY_VERSION.to_f < 3.1
   end
 end
 
-if RUBY_VERSION.to_f >= 2.5
+if RUBY_VERSION.to_f >= 2.5 && RUBY_VERSION.to_f < 4.0
   appraise "rails-6.1" do
     gem "rails", "~> 6.1.0"
     gem "mysql2", "~> 0.5.0"
@@ -40,7 +40,7 @@ if RUBY_VERSION.to_f >= 2.5
   end
 end
 
-if RUBY_VERSION.to_f >= 2.7
+if RUBY_VERSION.to_f >= 3.0
   appraise "rails-7.0" do
     gem "rails", "~> 7.0.1"
     gem "mysql2", "~> 0.5.0"
@@ -72,7 +72,9 @@ if RUBY_VERSION.to_f >= 3.2
     gem "sqlite3", "~> 2.1"
     gem "trilogy", "~> 2.9"
   end
+end
 
+if RUBY_VERSION.to_f >= 3.3
   appraise "rails-edge" do
     gem "rails", :git => "https://github.com/rails/rails.git", :branch => "main"
     gem "mysql2", "~> 0.5.0"
