@@ -45,11 +45,17 @@ module Combustion
   def self.initialize!(*modules, &block)
     self.setup_environment = block if block_given?
 
+    Rails.env ||= ENV["RAILS_ENV"] || "test"
+
     options = modules.extract_options!
     modules = AVAILABLE_MODULES if modules == [:all]
     modules.each { |mod| require MODULES.fetch(mod, "#{mod}/railtie") }
 
     Bundler.require :default, Rails.env
+
+    # intentionally required only after we load framework, to avoid recent Rails
+    # order-of-load warnings on initializers etc.
+    require "combustion/application"
 
     Combustion::Application.configure_for_combustion
     include_database modules, options
@@ -93,5 +99,7 @@ require "combustion/configurations/action_controller"
 require "combustion/configurations/action_mailer"
 require "combustion/configurations/active_record"
 require "combustion/configurations/active_storage"
-require "combustion/application"
 require "combustion/database"
+
+# combustion/application is intentionally required lazily in #initialize!, not
+# on boot to avoid recent Rails order-of-load warnings.

@@ -2,7 +2,7 @@
 
 require "securerandom"
 require "digest"
-Rails.env = ENV["RAILS_ENV"] || "test"
+Rails.env ||= ENV["RAILS_ENV"] || "test"
 
 module Combustion
   class Application < Rails::Application
