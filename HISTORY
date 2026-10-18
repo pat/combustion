@@ -1,3 +1,6 @@
+1.7.0 - October 19th 2026
+* No longer define out-of-date values for default charset/collations in MySQL configurations. Let the database or developer set those if they wish.
+
 1.6.0 - October 18th 2026
 * Add support for Ruby 3.4, and Rails 8.0-8.1 (Santiago Rodriguez).
 * Add support for Ruby 4.0.
