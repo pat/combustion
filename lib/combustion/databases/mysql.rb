@@ -12,7 +12,7 @@ class Combustion::Databases::MySQL < Combustion::Databases::Base
   private
 
   def charset
-    configuration[:charset] || ENV["CHARSET"] || "utf8"
+    configuration[:charset] || ENV["CHARSET"]
   end
 
   def charset_error
@@ -22,7 +22,7 @@ class Combustion::Databases::MySQL < Combustion::Databases::Base
   end
 
   def collation
-    configuration[:collation] || ENV["COLLATION"] || "utf8_unicode_ci"
+    configuration[:collation] || ENV["COLLATION"]
   end
 
   def create
@@ -46,7 +46,7 @@ class Combustion::Databases::MySQL < Combustion::Databases::Base
   end
 
   def creation_options
-    {:charset => charset, :collation => collation}
+    {:charset => charset, :collation => collation}.compact
   end
 
   def drop
