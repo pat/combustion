@@ -45,7 +45,7 @@ module Combustion
   def self.initialize!(*modules, &block)
     self.setup_environment = block if block_given?
 
-    Rails.env ||= ENV["RAILS_ENV"] || "test"
+    Rails.env = ENV["RAILS_ENV"] || "test"
 
     options = modules.extract_options!
     modules = AVAILABLE_MODULES if modules == [:all]
