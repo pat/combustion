@@ -42,7 +42,7 @@ module Combustion
     keys
   end.freeze
 
-  def self.initialize!(*modules, &block)
+  def self.initialize!(*modules, &block) # rubocop:disable Metrics/MethodLength
     self.setup_environment = block if block_given?
 
     Rails.env = ENV["RAILS_ENV"] || "test"
