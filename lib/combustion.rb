@@ -66,8 +66,11 @@ module Combustion
   def self.include_database(modules, options)
     return unless modules.map(&:to_s).include? "active_record"
 
+    # A frozen copy, so Rails can make the block Ractor-shareable
+    # (ActiveSupport::Ractors.unshareable_proc_action in Rails 8.2).
+    database_options = options.dup.freeze
     Combustion::Application.config.to_prepare do
-      Combustion::Database.setup(options)
+      Combustion::Database.setup(database_options)
     end
   end
 
