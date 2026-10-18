@@ -5,6 +5,7 @@ source "http://rubygems.org"
 gemspec
 
 if RUBY_VERSION.to_f < 3.0
+  gem "pg", "<= 1.6.2"
   gem "sqlite3", "~> 1.3.13"
 else
   gem "sqlite3", "~> 1.4"
