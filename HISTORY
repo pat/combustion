@@ -1,5 +1,7 @@
-Unreleased
-* Add official support for Ruby 3.4, and Rails 8.0-8.1 (Santiago Rodriguez)
+1.6.0 - October 18th 2026
+* Add support for Ruby 3.4, and Rails 8.0-8.1 (Santiago Rodriguez).
+* Add support for Ruby 4.0.
+* Add support for Rails 8.2 (Jonathan Rochkind).
 * Freeze the options captured by the database setup block, so Rails 8.2 can make it Ractor-shareable (Mikael Henriksson).
 
 1.5.0 - July 7th 2024
