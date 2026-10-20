@@ -199,7 +199,7 @@ I've not tried using this with Cucumber, but it should work in theory without to
 
 ## Contributing
 
-Please note that this project now has a [Contributor Code of Conduct](http://contributor-covenant.org/version/1/0/0/). By participating in this project you agree to abide by its terms.
+Please note that this project has a [Contributor Code of Conduct](http://contributor-covenant.org/version/1/0/0/) and an [AI/LLMS policy](https://github.com/pat/combustion/blob/main/AI_POLICY.md). By participating in this project you agree to abide by their terms.
 
 Contributions are very much welcome - but keep in mind the following:
 
